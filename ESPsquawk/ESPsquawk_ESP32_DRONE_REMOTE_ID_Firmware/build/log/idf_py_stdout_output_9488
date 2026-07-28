@@ -1,0 +1,2469 @@
+Command: C:\Espressif\tools\python\v6.0.2\venv\Scripts\python.exe C:\esp\v6.0.2\esp-idf\tools/idf_monitor.py -p COM11 -b 230400 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 E:\Drones\ESPbuzz\ESPsquawk_ESP32_DRONE_REMOTE_ID_Firmware\build\esp-squawk-remoteID.elf E:\Drones\ESPbuzz\ESPsquawk_ESP32_DRONE_REMOTE_ID_Firmware\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\tools\python\v6.0.2\venv\Scripts\python.exe' 'C:\esp\v6.0.2\esp-idf\tools\idf.py' '-p' 'COM11' '-b' '230400'
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0x28 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40381b5a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x214c
+load:0x403c8700,len:0xf28
+load:0x403cb700,len:0x3460
+entry 0x403c8954
+[0;32mI (24) boot: ESP-IDF v6.0.2 2nd stage bootloader[0m
+[0;32mI (24) boot: compile time Jul 28 2026 15:41:28[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+D (25) bootloader_flash: non-XMC chip detected by SFDP Read (46), skip.
+D (25) bootloader_flash: mmu set block paddr=0x00000000 (was 0xffffffff)
+D (26) bootloader_flash: mmu set block paddr=0x00000000 (was 0xffffffff)
+D (26) bootloader_flash: mmu set block paddr=0x00000000 (was 0xffffffff)
+D (27) bootloader_flash: mmu set block paddr=0x00000000 (was 0xffffffff)
+D (27) bootloader_flash: mmu set block paddr=0x00000000 (was 0xffffffff)
+D (27) bootloader_flash: mmu set block paddr=0x00000000 (was 0xffffffff)
+[0;32mI (28) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+D (28) boot.esp32s3: magic e9
+D (28) boot.esp32s3: segments 03
+D (28) boot.esp32s3: spi_mode 02
+D (29) boot.esp32s3: spi_speed 0f
+D (29) boot.esp32s3: spi_size 02
+[0;32mI (29) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (29) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (29) boot.esp32s3: SPI Flash Size : 4MB[0m
+D (30) boot: Enabling RTCWDT(9000 ms)
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+D (30) bootloader_flash: rodata starts from paddr=0x00008000, size=0xc00, will be mapped to vaddr=0x3c000000
+V (31) bootloader_flash: after mapping, starting from paddr=0x00000000 and vaddr=0x3c000000, 0x10000 bytes are mapped
+D (31) boot: mapped partition table 0x8000 at 0x3c008000
+D (32) flash_parts: partition table verified, 7 entries
+[0;32mI (32) boot: Partition Table:[0m
+[0;32mI (32) boot: ## Label            Usage          Type ST Offset   Length[0m
+D (32) boot: load partition table entry 0x3c008000
+D (32) boot: type=1 subtype=2
+[0;32mI (33) boot:  0 nvs              WiFi data        01 02 00009000 00005000[0m
+D (33) boot: load partition table entry 0x3c008020
+D (33) boot: type=1 subtype=0
+[0;32mI (33) boot:  1 otadata          OTA data         01 00 0000e000 00002000[0m
+D (34) boot: load partition table entry 0x3c008040
+D (34) boot: type=1 subtype=1
+[0;32mI (34) boot:  2 phy_init         RF data          01 01 00010000 00001000[0m
+D (35) boot: load partition table entry 0x3c008060
+D (35) boot: type=0 subtype=0
+[0;32mI (35) boot:  3 factory          factory app      00 00 00020000 001e0000[0m
+D (35) boot: load partition table entry 0x3c008080
+D (36) boot: type=0 subtype=10
+[0;32mI (36) boot:  4 ota_0            OTA app          00 10 00200000 001e0000[0m
+D (36) boot: load partition table entry 0x3c0080a0
+D (37) boot: type=1 subtype=3
+[0;32mI (37) boot:  5 coredump         Unknown data     01 03 003e0000 00020000[0m
+[0;32mI (37) boot: End of partition table[0m
+D (37) boot: OTA data offset 0xe000
+D (38) bootloader_flash: rodata starts from paddr=0x0000e000, size=0x2000, will be mapped to vaddr=0x3c000000
+V (38) bootloader_flash: after mapping, starting from paddr=0x00000000 and vaddr=0x3c000000, 0x10000 bytes are mapped
+D (39) boot: otadata[0]: sequence values 0xffffffff
+D (39) boot: otadata[1]: sequence values 0xffffffff
+D (39) boot: OTA sequence numbers both empty (all-0xFF) or partition table does not have bootable ota_apps (app_count=1)
+[0;32mI (40) boot: Defaulting to factory image[0m
+D (40) boot: Trying partition index -1 offs 0x20000 size 0x1e0000
+D (40) esp_image: reading image header @ 0x20000
+D (41) bootloader_flash: mmu set block paddr=0x00020000 (was 0xffffffff)
+D (41) bootloader_flash: mmu set block paddr=0x00020000 (was 0xffffffff)
+D (42) bootloader_flash: mmu set block paddr=0x00020000 (was 0xffffffff)
+D (42) bootloader_flash: mmu set block paddr=0x00020000 (was 0xffffffff)
+D (42) bootloader_flash: mmu set block paddr=0x00020000 (was 0xffffffff)
+D (43) bootloader_flash: mmu set block paddr=0x00020000 (was 0xffffffff)
+D (43) esp_image: image header: 0xe9 0x06 0x02 0x02 403758d8
+V (43) esp_image: loading segment header 0 at offset 0x20018
+D (44) bootloader_flash: mmu set block paddr=0x00020000 (was 0xffffffff)
+D (44) bootloader_flash: mmu set block paddr=0x00020000 (was 0xffffffff)
+V (44) esp_image: segment data length 0x8dbe4 data starts 0x20020
+V (45) esp_image: MMU page size 0x10000
+V (45) esp_image: segment 0 map_segment 1 segment_data_offs 0x20020 load_addr 0x3c100020
+[0;32mI (45) esp_image: segment 0: paddr=00020020 vaddr=3c100020 size=8dbe4h (580580) map[0m
+D (46) esp_image: free data page_count 0x00000200
+D (46) bootloader_flash: rodata starts from paddr=0x00020020, size=0x8dbe4, will be mapped to vaddr=0x3c000000
+V (47) bootloader_flash: after mapping, starting from paddr=0x00020000 and vaddr=0x3c000000, 0x90000 bytes are mapped
+V (150) esp_image: loading segment header 1 at offset 0xadc04
+D (150) bootloader_flash: mmu set block paddr=0x000a0000 (was 0xffffffff)
+D (150) bootloader_flash: mmu set block paddr=0x000a0000 (was 0xffffffff)
+V (151) esp_image: segment data length 0x240c data starts 0xadc0c
+V (151) esp_image: MMU page size 0x10000
+V (151) esp_image: segment 1 map_segment 0 segment_data_offs 0xadc0c load_addr 0x3fc9f200
+[0;32mI (151) esp_image: segment 1: paddr=000adc0c vaddr=3fc9f200 size=0240ch (  9228) load[0m
+D (152) esp_image: free data page_count 0x00000200
+D (152) bootloader_flash: rodata starts from paddr=0x000adc0c, size=0x240c, will be mapped to vaddr=0x3c000000
+V (153) bootloader_flash: after mapping, starting from paddr=0x000a0000 and vaddr=0x3c000000, 0x20000 bytes are mapped
+V (155) esp_image: loading segment header 2 at offset 0xb0018
+D (155) bootloader_flash: mmu set block paddr=0x000b0000 (was 0xffffffff)
+D (156) bootloader_flash: mmu set block paddr=0x000b0000 (was 0xffffffff)
+V (156) esp_image: segment data length 0xfcb9c data starts 0xb0020
+V (156) esp_image: MMU page size 0x10000
+V (157) esp_image: segment 2 map_segment 1 segment_data_offs 0xb0020 load_addr 0x42000020
+[0;32mI (157) esp_image: segment 2: paddr=000b0020 vaddr=42000020 size=fcb9ch (1035164) map[0m
+D (158) esp_image: free data page_count 0x00000200
+D (158) bootloader_flash: rodata starts from paddr=0x000b0020, size=0xfcb9c, will be mapped to vaddr=0x3c000000
+V (158) bootloader_flash: after mapping, starting from paddr=0x000b0000 and vaddr=0x3c000000, 0x100000 bytes are mapped
+V (341) esp_image: loading segment header 3 at offset 0x1acbbc
+D (342) bootloader_flash: mmu set block paddr=0x001a0000 (was 0xffffffff)
+D (342) bootloader_flash: mmu set block paddr=0x001a0000 (was 0xffffffff)
+V (342) esp_image: segment data length 0x374c data starts 0x1acbc4
+V (343) esp_image: MMU page size 0x10000
+V (343) esp_image: segment 3 map_segment 0 segment_data_offs 0x1acbc4 load_addr 0x3fca160c
+[0;32mI (343) esp_image: segment 3: paddr=001acbc4 vaddr=3fca160c size=0374ch ( 14156) load[0m
+D (344) esp_image: free data page_count 0x00000200
+D (344) bootloader_flash: rodata starts from paddr=0x001acbc4, size=0x374c, will be mapped to vaddr=0x3c000000
+V (345) bootloader_flash: after mapping, starting from paddr=0x001a0000 and vaddr=0x3c000000, 0x20000 bytes are mapped
+V (348) esp_image: loading segment header 4 at offset 0x1b0310
+D (348) bootloader_flash: mmu set block paddr=0x001b0000 (was 0xffffffff)
+D (349) bootloader_flash: mmu set block paddr=0x001b0000 (was 0xffffffff)
+V (349) esp_image: segment data length 0x1b130 data starts 0x1b0318
+V (349) esp_image: MMU page size 0x10000
+V (350) esp_image: segment 4 map_segment 0 segment_data_offs 0x1b0318 load_addr 0x40374000
+[0;32mI (350) esp_image: segment 4: paddr=001b0318 vaddr=40374000 size=1b130h (110896) load[0m
+D (351) esp_image: free data page_count 0x00000200
+D (351) bootloader_flash: rodata starts from paddr=0x001b0318, size=0x1b130, will be mapped to vaddr=0x3c000000
+V (351) bootloader_flash: after mapping, starting from paddr=0x001b0000 and vaddr=0x3c000000, 0x20000 bytes are mapped
+V (376) esp_image: loading segment header 5 at offset 0x1cb448
+D (376) bootloader_flash: mmu set block paddr=0x001c0000 (was 0xffffffff)
+D (377) bootloader_flash: mmu set block paddr=0x001c0000 (was 0xffffffff)
+V (377) esp_image: segment data length 0x24 data starts 0x1cb450
+V (377) esp_image: MMU page size 0x10000
+V (378) esp_image: segment 5 map_segment 0 segment_data_offs 0x1cb450 load_addr 0x50000000
+[0;32mI (378) esp_image: segment 5: paddr=001cb450 vaddr=50000000 size=00024h (    36) load[0m
+D (379) esp_image: free data page_count 0x00000200
+D (379) bootloader_flash: rodata starts from paddr=0x001cb450, size=0x24, will be mapped to vaddr=0x3c000000
+V (379) bootloader_flash: after mapping, starting from paddr=0x001c0000 and vaddr=0x3c000000, 0x10000 bytes are mapped
+V (380) esp_image: image start 0x00020000 end of last section 0x001cb474
+D (380) bootloader_flash: mmu set block paddr=0x001c0000 (was 0xffffffff)
+D (381) bootloader_flash: mmu set block paddr=0x001c0000 (was 0xffffffff)
+D (381) bootloader_flash: mmu set block paddr=0x001c0000 (was 0xffffffff)
+D (381) bootloader_flash: mmu set block paddr=0x001c0000 (was 0xffffffff)
+D (382) bootloader_flash: mmu set block paddr=0x001c0000 (was 0xffffffff)
+D (382) bootloader_flash: mmu set block paddr=0x001c0000 (was 0xffffffff)
+D (383) bootloader_flash: mmu set block paddr=0x001c0000 (was 0xffffffff)
+D (383) bootloader_flash: mmu set block paddr=0x001c0000 (was 0xffffffff)
+D (383) bootloader_flash: mmu set block paddr=0x001c0000 (was 0xffffffff)
+D (384) bootloader_flash: mmu set block paddr=0x001c0000 (was 0xffffffff)
+D (384) bootloader_flash: mmu set block paddr=0x001c0000 (was 0xffffffff)
+D (385) boot: Calculated hash: 6e57e025c751632017cb250e235185e6e528e305e45d19ebb21b12871424bc16
+[0;32mI (396) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (396) boot: Disabling RNG early entropy source...[0m
+D (396) boot: Mapping segment 0 as DROM
+D (396) boot: Mapping segment 2 as IROM
+D (397) boot: calling set_cache_and_start_app
+D (397) boot: configure drom and irom and start
+V (397) boot: rodata starts from paddr=0x00020020, vaddr=0x3c100020, size=0x8dbe4
+V (397) boot: after mapping rodata, starting from paddr=0x00020000 and vaddr=0x3c100000, 0x90000 bytes are mapped
+V (398) boot: mapped one page of the rodata, from paddr=0x00020000 and vaddr=0x3dff0000, 0x10000 bytes are mapped
+V (398) boot: text starts from paddr=0x000b0020, vaddr=0x42000020, size=0xfcb9c
+V (399) boot: after mapping text, starting from paddr=0x000b0000 and vaddr=0x42000000, 0x100000 bytes are mapped
+D (399) boot: start: 0x403758d8
+[0;32mI (400) cpu_start: Multicore app[0m
+[0;32mI (409) cpu_start: Pro cpu start user code[0m
+[0;32mI (409) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (410) app_init: Application information:[0m
+[0;32mI (410) app_init: Project name:     esp-squawk-remoteID[0m
+[0;32mI (410) app_init: App version:      1[0m
+[0;32mI (410) app_init: Compile time:     Jul 28 2026 15:40:55[0m
+[0;32mI (410) app_init: ELF file SHA256:  7875ce99f...[0m
+[0;32mI (411) app_init: ESP-IDF:          v6.0.2[0m
+[0;32mI (411) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (411) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (411) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (412) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (412) heap_init: At 3FCB2E80 len 00036890 (218 KiB): RAM[0m
+[0;32mI (412) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (412) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (413) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (414) spi_flash: detected chip: generic[0m
+[0;32mI (414) spi_flash: flash io: dio[0m
+[0;32mI (415) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (415) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (416) esp_core_dump_flash: Init core dump to flash[0m
+[0;32mI (416) esp_core_dump_flash: Found partition 'coredump' @ 3e0000 131072 bytes[0m
+[0;32mI (418) main_task: Started on CPU0[0m
+[0;32mI (418) main_task: Calling app_main()[0m
+[0;32mI (418) ESP_RID: ESP DRONE REMOTEID v1.4.1 initializing[0m
+[0;33mW (458) BLE_TX: BLE not initialized, skipping TX power set[0m
+[0;32mI (458) ESP_RID: Startup delay 10000 ms[0m
+[0;32mI (10458) pp: pp rom version: e7ae62f[0m
+[0;32mI (10458) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (10468) wifi:wifi driver task: 3fceeaf4, prio:23, stack:6656, core=0[0m
+[0;32mI (10468) wifi:wifi firmware version: 00ad238[0m
+[0;32mI (10468) wifi:wifi certification version: v7.0[0m
+[0;32mI (10468) wifi:config NVS flash: enabled[0m
+[0;32mI (10468) wifi:config nano formatting: disabled[0m
+[0;32mI (10468) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (10468) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (10468) wifi:Init management short buffer num: 32[0m
+[0;32mI (10468) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (10468) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (10468) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (10468) wifi:Init static rx buffer num: 10[0m
+[0;32mI (10468) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (10468) wifi_init: rx ba win: 6[0m
+[0;32mI (10468) wifi_init: accept mbox: 6[0m
+[0;32mI (10468) wifi_init: tcpip mbox: 32[0m
+[0;32mI (10468) wifi_init: udp mbox: 6[0m
+[0;32mI (10468) wifi_init: tcp mbox: 6[0m
+[0;32mI (10468) wifi_init: tcp tx win: 5760[0m
+[0;32mI (10468) wifi_init: tcp rx win: 5760[0m
+[0;32mI (10468) wifi_init: tcp mss: 1440[0m
+[0;32mI (10478) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (10478) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (10538) phy_init: phy_version 712,87e8c20e,Apr 13 2026,18:51:10[0m
+[0;32mI (10578) wifi:mode : softAP (a0:f2:62:f0:3f:e9)[0m
+[0;32mI (10588) wifi:Total power save buffer number: 16[0m
+[0;32mI (10588) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (10588) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (10588) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (10598) wifi:Total power save buffer number: 16[0m
+[0;32mI (10598) WIFI_TX: WiFi AP: SSID="ESP-RID" channel=6 auth=WPA2-PSK power=20.0dBm[0m
+[0;32mI (10598) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (10598) WIFI_TX: WiFi TX initialized, MAC: a0:f2:62:f0:3f:e8[0m
+[0;32mI (10598) BLE_INIT: BT controller compile version [51d9dfd][0m
+[0;32mI (10598) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (10598) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (10598) BLE_INIT: Bluetooth MAC: a0:f2:62:f0:3f:ea[0m
+[0;32mI (10628) BLE_TX: BLE initialized[0m
+[0;32mI (10628) BLE_TX: Legacy (BLE 4.0) BLE advertising address: ee:b2:b5:7d:d6:03[0m
+[0;32mI (10628) BLE_TX: Legacy-compatible BLE advertising instance started[0m
+[0;32mI (10628) BLE_TX: Long-Range (BLE 5.0, Coded PHY) BLE advertising address: d0:6c:ea:d5:70:48[0m
+[0;32mI (10628) BLE_TX: Long-range BLE advertising instance started[0m
+[0;32mI (10628) BLE_TX: Extended (BLE 5.0, 1M PHY) BLE advertising address: f1:97:be:6e:93:eb[0m
+[0;32mI (10628) BLE_TX: Extended 1M-PHY BLE advertising instance started[0m
+[0;32mI (10628) BUZZER: Buzzer PWM init GPIO=9[0m
+[0;32mI (10628) LED: LED PWM init R=2 G=4 B(compliance)=6[0m
+[0;32mI (10638) WEB_CFG: Web server started on port 80[0m
+
+  ESP DRONE REMOTEID CLI
+  Type 'help' for commands
+
+rid> I (10638) CLI: CLI initialized
+[0;32mI (10638) ESP_RID: ✓ Remote ID initialized[0m
+[0;32mI (10638) ESP_RID: ✓ Remote ID started[0m
+
+[34m  ╔══════════════════════════════════════════════════════════════╗
+[0m  ║                                                                  ║
+  ║                  ..                                               ║
+  ║                -:...:-:                                           ║
+  ║                +     .+*-                                         ║
+  ║                +:      :*=.                                       ║
+  ║              .--+.       -=:                                      ║
+  ║              --  =:       :=-                                     ║
+  ║       ......  -.  +:.:::.  ---.                                   ║
+  ║     .=.  .:-++-=-  =:   ..::=:-:.                                 ║
+  ║     .=       .:-++::+-      .-=--::                               ║
+  ║      .-:         .-+===.      .=:::-:                             ║
+  ║        .-:          :--+=:      -::.:-                            ║
+  ║          .-=-:::::::::---=++=:.  .:--:=.          .               ║
+  ║            .:-.        ..:---===-:..:=++:     =*##+=.             ║
+  ║               :-:          .::::-=++-:=%###*+@@@@+**             ║
+  ║                 .::.            ..:=*#%@@@@@@@@@%*#*+:             ║
+  ║                    .:::..      ..:-=%%@@@@@@@@@%*-               ║
+  ║                        .........-#%@@%%****++#-* ==              ║
+  ║                               :*@@%*+:    -=. *  :-::::::.        ║
+  ║                            .-++=:.      .+-   =-..                ║
+  ║        .:::::           .-+=:            =-     ..::::            ║
+  ║    .=+==-----.       :=*+-                .--                     ║
+  ║  .++::-=====-    .-+##=.                    .=                    ║
+  ║ :%- +*:-:-===. .=*%%*:                                              ║
+  ║ #+ *# -#-. .-*%%*-                                                 ║
+  ║ -  =. =:  :*#+-=  -  -.                                            ║
+  ║           .   -% :@..@:                                           ║
+  ║           :-=++.:#= +#                                             ║
+  ║           :----++:.**                                             ║
+  ║           -------++:                                               ║
+  ║           =+++==:.                                                 ║
+  ║                                                                  ║
+  ║  ___ ___ ___    ___  ___   ___  _  _ ___                          ║
+  ║ | __/ __| _ \  |   \| _ \ / _ \| \| | __|                          ║
+  ║ | _|\__ \  _/  | |) |   /| (_) | .` | _|                           ║
+  ║ |___|___/_|    |___/|_|_\ \___/|_|\_|___|                          ║
+  ║                                                                  ║
+  ║  ___ ___ __  __ ___ _____ ___   ___ ___                            ║
+  ║ | _ \ __|  \/  |  \_   _| __| | |_ _|   \                          ║
+  ║ |   / _|| |\/| | () || | | _|    | || |) |                         ║
+  ║ |_|_\___|_|  |_|\___/|_| |___|  |___|___/                          ║
+  ║                                                                  ║
+  ║  ESP DRONE REMOTEID — Open DroneID Transmitter                    ║
+  ║                                                                  ║
+[32m  ║  v1.4.1                          ASTM F3411-22a                   ║
+[34m  ╠═════════════════════════════════════════════════════════════════╣
+[0m  ║  WiFi AP    │ ESP-RID                                            ║
+  ║  Config URL │ http://192.168.4.1                                 ║
+  ║  MAC AP     │ a0:f2:62:f0:3f:e9                                        ║
+[34m  ╚═════════════════════════════════════════════════════════════════╝
+[0m
+[0;32mI (10658) main_task: Returned from app_main()[0m
+[0;32mI (16998) wifi:station: 48:f1:7f:f7:15:5c join, AID=1, bgn, 20[0m
+[0;32mI (17048) esp_netif_lwip: DHCP server assigned IP to a client, IP is: 192.168.4.2[0m
+[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0mI (22388) temperature_sensor: Range [-10°C ~ 80°C], error < 1°C
+[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0mW (36118) httpd_txrx: httpd_sock_err: error in send : 11
+[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0mW (41118) httpd_txrx: httpd_sock_err: error in send : 11
+[0;33mW (41118) httpd_uri: httpd_uri: uri handler execution failed[0m
+[0;33mW (41128) httpd_txrx: httpd_sock_err: error in recv : 104[0m
+[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 104   KB / 279   KB                        │
+  │  Uptime    : 00:01:00                                      │
+  └─────────────────────────────────────┘
+[0mW (64618) httpd_txrx: httpd_sock_err: error in send : 11
+[0;33mW (69618) httpd_txrx: httpd_sock_err: error in send : 11[0m
+[0;33mW (69618) httpd_uri: httpd_uri: uri handler execution failed[0m
+[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0mI (100548) wifi:station: 48:f1:7f:f7:15:5c leave, AID = 1, reason = 1, bss_flags is 691299, bss:0x3fcb5a00
+[0;32mI (100558) wifi:new:<6,2>, old:<6,0>, ap:<6,2>, sta:<255,255>, prof:6, snd_ch_cfg:0x0[0m
+[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0mI (106998) wifi:station: 48:f1:7f:f7:15:5c join, AID=1, bgn, 40D
+[0;32mI (107058) esp_netif_lwip: DHCP server assigned IP to a client, IP is: 192.168.4.2[0m
+[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 105   KB / 279   KB                        │
+  │  Uptime    : 00:01:50                                      │
+  └─────────────────────────────────────┘
+[0mI (110728) wifi:<ba-add>idx:2 (ifx:1, 48:f1:7f:f7:15:5c), tid:0, ssn:87, winSize:64
+[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 110   KB / 279   KB                        │
+  │  Uptime    : 00:02:40                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0mI (188538) wifi:station: 48:f1:7f:f7:15:5c leave, AID = 1, reason = 1, bss_flags is 756835, bss:0x3fcb5a00
+[0;32mI (188538) wifi:new:<6,0>, old:<6,2>, ap:<6,2>, sta:<255,255>, prof:6, snd_ch_cfg:0x0[0m
+[0;32mI (188538) wifi:<ba-del>idx:2, tid:0[0m
+[0;32mI (188538) wifi:new:<6,2>, old:<6,0>, ap:<6,2>, sta:<255,255>, prof:6, snd_ch_cfg:0x0[0m
+[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0mI (193248) wifi:station: 48:f1:7f:f7:15:5c join, AID=1, bgn, 40D
+[0;32mI (194608) esp_netif_lwip: DHCP server assigned IP to a client, IP is: 192.168.4.2[0m
+[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0mI (206978) wifi:<ba-add>idx:2 (ifx:1, 48:f1:7f:f7:15:5c), tid:0, ssn:282, winSize:64
+[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:03:30                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:04:20                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:05:10                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:06:00                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:06:50                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:07:40                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:08:30                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:09:20                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:10:10                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:11:00                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:11:50                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:12:40                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:13:30                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:14:20                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:15:10                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:16:00                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:16:50                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:17:40                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 109   KB / 279   KB                        │
+  │  Uptime    : 00:18:30                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 105   KB / 279   KB                        │
+  │  Uptime    : 00:19:20                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:20:10                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:21:00                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:21:50                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:22:40                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:23:30                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:24:20                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:25:10                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:26:00                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:26:50                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:27:40                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:28:30                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:29:20                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:30:10                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:31:00                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:31:50                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:32:40                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:33:30                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:34:20                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:35:10                                      │
+  └─────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[32m
+  ┌─ ESP Drone Remote ID ─ status ───────────────┐
+  │  Protocol  : NMEA                              │
+  │  GPS Fix   : NO            (0/0)       │
+  │  Lat / Lon : -- / --                 │
+  │  TX count  : 0                                   │
+  │  Kalman    : OFF                               │
+  │  Identity  : NO                                │
+  └──────────────────────────────────────┘
+[0m[34m
+  ┌─ System Info ───────────────────────────────┐
+  │  Heap free : 116   KB / 279   KB                        │
+  │  Uptime    : 00:36:00                                      │
+  └─────────────────────────────────────┘

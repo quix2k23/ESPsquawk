@@ -1,0 +1,1290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🛸</text></svg>">
+<title>ESP DRONE REMOTEID</title>
+<style>
+:root{
+  --bg:#f4f5f7;--card-bg:#fff;--card-border:#e2e4e8;--txt:#1a1d23;--txt-sec:#5a606b;--txt-muted:#8a909c;
+  --accent:#1565c0;--accent-bg:#e3f2fd;--hover:#f0f1f3;--green:#2e7d32;--red:#c62828;--amber:#f57f17;
+}
+@media(prefers-color-scheme:dark){
+  :root{--bg:#14161a;--card-bg:#1e2126;--card-border:#2c3038;--txt:#e8eaed;--txt-sec:#a8adb8;--txt-muted:#6b7180;
+  --accent:#64b5f6;--accent-bg:#0d2137;--hover:#262a31}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:15px;padding-bottom:70px}
+h1,h2,h3{margin:0}
+label{display:block;font-size:.8em;font-weight:600;color:var(--txt-sec);margin:14px 0 4px}
+input,select{width:100%;padding:11px 10px;font-size:1em;border:1px solid var(--card-border);border-radius:8px;background:var(--card-bg);color:var(--txt);min-height:44px}
+input.warn,select.warn{border-color:var(--amber);border-width:2px}
+input[type=checkbox]{width:auto;min-height:auto}
+.hint{font-size:.75em;color:var(--txt-muted);margin-top:4px}
+.warn-hint{font-size:.78em;color:var(--amber);margin-top:4px}
+.btn{width:100%;padding:13px;margin-top:16px;border:none;border-radius:8px;background:var(--accent);color:#fff;font-size:1em;font-weight:600;min-height:48px}
+.btn:active{opacity:.8}
+.btn-danger{background:var(--red)}
+.btn-sec{background:var(--hover);color:var(--txt)}
+.btn-sm{padding:9px 14px;border:none;border-radius:8px;background:var(--hover);color:var(--txt);font-size:.85em;font-weight:600;min-height:40px}
+.btn-sm:active{opacity:.7}
+.card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:14px;margin:10px}
+.chk-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--card-border)}
+.chk-row:last-child{border-bottom:none}
+#websrv-row{border-radius:6px;padding:9px 8px;transition:background .15s,color .15s;font-weight:600}
+#websrv-row:has(#websrv_en:checked){background:var(--accent);color:#fff}
+/* UART Monitor activity dot -- flashes on every new byte the firmware
+ * reports (uart_mirror's monotonic total), independent of whether the
+ * displayed text changed, so a repeating NMEA sentence (GPS genuinely
+ * holding the same fix) still pulses this while a truly stalled link
+ * leaves it dark. */
+.uart-activity-dot{width:7px;height:7px;border-radius:50%;background:var(--txt-muted);display:inline-block;margin-left:4px;transition:background .1s,box-shadow .1s}
+.uart-activity-dot.pulse{background:#2ecc71;box-shadow:0 0 5px rgba(46,204,113,.7)}
+.row2{display:flex;gap:10px}
+.row2>div{flex:1}
+/* header */
+.hdr{position:sticky;top:0;z-index:20;background:var(--card-bg);border-bottom:1px solid var(--card-border);padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.hdr h1{font-size:1em}
+.conn-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:5px}
+.conn-dot.ok{background:var(--green)}
+.conn{font-size:.75em;color:var(--txt-sec)}
+/* tabs */
+.tabs{position:sticky;top:41px;z-index:19;display:flex;overflow-x:auto;background:var(--bg);border-bottom:1px solid var(--card-border);-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:10px 14px;font-size:.82em;font-weight:600;color:var(--txt-muted);background:none;border:none;border-bottom:2px solid transparent;white-space:nowrap}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.pane{display:none}
+.pane.active{display:block}
+/* status dashboard */
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px}
+.stat-box{background:var(--card-bg);border:1px solid var(--card-border);border-left:3px solid var(--card-border);border-radius:8px;padding:10px}
+.stat-box.ok{border-left-color:var(--green)}
+.stat-box.no{border-left-color:var(--red)}
+.stat-label{font-size:.68em;text-transform:uppercase;letter-spacing:.4px;color:var(--txt-muted)}
+.stat-val{font-size:1.05em;font-weight:700;margin-top:2px}
+.stat-sub{font-size:.72em;color:var(--txt-sec);margin-top:2px}
+/* toast */
+.toast-wrap{position:fixed;left:0;right:0;bottom:76px;z-index:999;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
+.toast{max-width:90%;padding:10px 16px;border-radius:8px;font-size:.85em;font-weight:600;color:#fff;background:var(--green);box-shadow:0 2px 10px rgba(0,0,0,.3);opacity:0;transform:translateY(10px);transition:.2s}
+.toast.err{background:var(--red)}
+.toast.show{opacity:1;transform:translateY(0)}
+/* modal */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:998;align-items:center;justify-content:center}
+.modal-bg.show{display:flex}
+.modal{background:var(--card-bg);border-radius:10px;padding:20px;width:85%;max-width:340px;text-align:center}
+.modal p{color:var(--txt-sec);font-size:.9em;margin:10px 0 16px}
+.progress-wrap{display:none;margin-top:10px;height:8px;border-radius:4px;background:var(--hover);overflow:hidden}
+.progress-wrap.active{display:block}
+.progress-fill{height:100%;width:0;background:var(--accent);transition:width .2s}
+.progress-fill.indeterminate{width:40%!important;animation:indet 1.1s infinite linear}
+@keyframes indet{0%{margin-left:-40%}100%{margin-left:100%}}
+/* console / uart monitor */
+.term-box{margin:0;overflow-y:auto;background:#101216;color:#d4d8de;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.72em;line-height:1.5;padding:8px;border-radius:8px;white-space:pre-wrap;word-break:break-all}
+.term-box .line{border-bottom:1px solid #23262c}
+.term-box .ts{color:#6b7180;margin-right:6px}
+.term-box .lv-E{color:#ff6b6b}
+.term-box .lv-W{color:#f5b942}
+/* sensors */
+.sensor-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sg-item{background:var(--hover);border-radius:6px;padding:8px 10px}
+.sg-label{display:block;font-size:.68em;color:var(--txt-muted);text-transform:uppercase;letter-spacing:.3px}
+.sg-value{display:block;font-size:.95em;font-weight:700;margin-top:2px;word-break:break-all}
+/* presets */
+.preset-item{display:flex;align-items:center;gap:8px;padding:10px;border-bottom:1px solid var(--card-border)}
+.preset-item:last-child{border-bottom:none}
+.preset-name{flex:1;font-weight:600}
+.preset-ts{font-size:.68em;color:var(--txt-muted)}
+.preset-item button{padding:6px 10px;border:none;border-radius:6px;background:var(--accent-bg);color:var(--accent);font-weight:700;min-height:36px}
+.preset-item button.del{background:#3a1414;color:var(--red)}
+@media(prefers-color-scheme:light){.preset-item button.del{background:#fdecea}}
+/* compliance */
+.comp-row{display:flex;align-items:center;gap:10px;padding:9px 4px;border-bottom:1px solid var(--card-border)}
+.comp-row:last-child{border-bottom:none}
+.comp-row .comp-label{flex:1;font-size:.85em}
+.comp-row.fail .comp-label{color:var(--red)}
+.comp-summary{margin-top:12px;padding:10px 12px;border-radius:8px;font-size:.82em;background:var(--hover)}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+<h1>&#x1f4e1; ESP REMOTEID</h1>
+<span class="conn"><span class="conn-dot" id="conn-dot"></span><span id="conn-text">Connecting...</span></span>
+</div>
+
+<div class="tabs">
+<button class="tab-btn active" data-tab="status" onclick="setTab('status')">Status</button>
+<button class="tab-btn" data-tab="identity" onclick="setTab('identity')">Identity</button>
+<button class="tab-btn" data-tab="tx" onclick="setTab('tx')">Transmission</button>
+<button class="tab-btn" data-tab="ap" onclick="setTab('ap')">WiFi</button>
+<button class="tab-btn" data-tab="fc" onclick="setTab('fc')">Flight Ctrl</button>
+<button class="tab-btn" data-tab="hw" onclick="setTab('hw')">Hardware</button>
+<button class="tab-btn" data-tab="sys" onclick="setTab('sys')">System</button>
+<button class="tab-btn" data-tab="fw" onclick="setTab('fw')">Firmware</button>
+<button class="tab-btn" data-tab="sensors" onclick="setTab('sensors')">Sensors</button>
+<button class="tab-btn" data-tab="console" onclick="setTab('console')">Console</button>
+<button class="tab-btn" data-tab="presets" onclick="setTab('presets')">Presets</button>
+<button class="tab-btn" data-tab="compliance" onclick="setTab('compliance')">Compliance</button>
+<button class="tab-btn" data-tab="security" onclick="setTab('security')">Security</button>
+</div>
+
+<!-- STATUS -->
+<div id="pane-status" class="pane active">
+<div class="stat-grid">
+<div class="stat-box no" id="st-gps-box"><div class="stat-label">GPS Status</div><div class="stat-val" id="st-gps">Waiting...</div><div class="stat-sub" id="st-sat">-</div></div>
+<div class="stat-box" id="st-proto-box"><div class="stat-label">Protocol</div><div class="stat-val" id="st-proto">-</div></div>
+<div class="stat-box" id="st-pos-box"><div class="stat-label">Position</div><div class="stat-val" id="st-lat">-</div><div class="stat-sub" id="st-lon">-</div></div>
+<div class="stat-box no" id="st-home-box"><div class="stat-label">Home Position</div><div class="stat-val" id="st-home-status">No Home Set</div><div class="stat-sub" id="st-home-lat">-</div><div class="stat-sub" id="st-home-lon">-</div></div>
+<div class="stat-box" id="st-move-box"><div class="stat-label">Movement</div><div class="stat-val" id="st-alt">-</div><div class="stat-sub" id="st-speed">-</div></div>
+<div class="stat-box" id="st-net-box"><div class="stat-label">Network</div><div class="stat-val" id="st-rssi">RSSI --</div><div class="stat-sub" id="st-temp">CPU --</div></div>
+<div class="stat-box" id="st-fwver-box"><div class="stat-label">Firmware</div><div class="stat-val" id="st-fwver">&mdash;</div></div>
+</div>
+<div class="card">
+<h3 style="font-size:.85em;margin-bottom:8px">&#x1f4e1; Transmission Activity <span style="float:right;color:var(--txt-muted);font-weight:400" id="st-tx-total">Total: 0</span></h3>
+<div class="hint">WiFi Beacon: <b id="st-tx-wifi">0</b> &middot; WiFi NAN: <b id="st-tx-nan">0</b> &middot; BLE4: <b id="st-tx-ble4">0</b> &middot; BLE5: <b id="st-tx-ble5">0</b></div>
+</div>
+</div>
+
+<!-- IDENTITY -->
+<div id="pane-identity" class="pane">
+<div class="card">
+<label for="uas_id">UAS ID</label>
+<input id="uas_id" maxlength="20" placeholder="e.g. RID-12345678">
+<div class="hint" id="uas_id-example">Max 20 chars. Serial number or CAA registration.</div>
+<div class="warn-hint" id="uas_id-warn" style="display:none"></div>
+
+<label for="id_type">ID Type</label>
+<select id="id_type">
+<option value="1">Serial Number (ANSI/CTA-2063)</option>
+<option value="2" selected>CAA Registration</option>
+<option value="3">UTM UUID</option>
+<option value="4">Session ID</option>
+</select>
+
+<label for="ua_type">UA Type</label>
+<select id="ua_type">
+<option value="0">None</option><option value="1">Aeroplane</option><option value="2" selected>Helicopter / Multirotor</option>
+<option value="3">Gyroplane</option><option value="4">Hybrid Lift</option><option value="5">Ornithopter</option>
+<option value="6">Glider</option><option value="7">Kite</option><option value="8">Free Balloon</option>
+<option value="9">Captive Balloon</option><option value="10">Airship</option><option value="11">Free Fall</option>
+<option value="12">Rocket</option><option value="13">Tethered Aircraft</option><option value="14">Ground Obstacle</option>
+<option value="15">Other</option>
+</select>
+
+<label for="op_id">Operator ID</label>
+<input id="op_id" maxlength="20" placeholder="e.g. OP-MARIO-12345">
+<div class="hint">e.g. GBR-OP-123456 &mdash; format is set by your national aviation authority (not broadcast under FAA rules)</div>
+
+<label for="self_id_text">Self-ID Description</label>
+<input id="self_id_text" maxlength="23" placeholder="e.g. Camera drone, DOY1234">
+
+<div class="row2">
+<div><label for="op_lat">Operator Lat</label><input id="op_lat" type="number" step="any" placeholder="0"></div>
+<div><label for="op_lon">Operator Lon</label><input id="op_lon" type="number" step="any" placeholder="0"></div>
+</div>
+<label for="op_alt">Operator Altitude (m)</label>
+<input id="op_alt" type="number" step="0.1" placeholder="0">
+
+<label for="uas_id2">UAS ID 2 (optional)</label>
+<input id="uas_id2" maxlength="20" placeholder="Secondary ID">
+<div class="hint" id="uas_id2-example"></div>
+<div class="warn-hint" id="uas_id2-warn" style="display:none"></div>
+<label for="id_type2">ID Type 2</label>
+<select id="id_type2"><option value="0">None</option><option value="1">Serial</option><option value="2">CAA</option><option value="3">UTM</option><option value="4">Session</option></select>
+<label for="ua_type2">UA Type 2</label>
+<select id="ua_type2">
+<option value="0">None</option><option value="1">Aeroplane</option><option value="2">Multirotor</option><option value="3">Gyroplane</option>
+<option value="4">Hybrid</option><option value="5">Ornithopter</option><option value="6">Glider</option><option value="15">Other</option>
+</select>
+
+<button class="btn" onclick="saveConfig('Identity')">Save Identity</button>
+</div>
+</div>
+
+<!-- TRANSMISSION -->
+<div id="pane-tx" class="pane">
+<div class="card">
+<label>Enabled Channels</label>
+<div class="chk-row"><input type="checkbox" id="tx_wifi_bcn" checked><span>WiFi Beacon</span></div>
+<div class="chk-row"><input type="checkbox" id="tx_wifi_nan"><span>WiFi NAN (beta)</span></div>
+<div class="chk-row"><input type="checkbox" id="tx_ble4" checked><span>BLE 4.0</span></div>
+<div class="chk-row"><input type="checkbox" id="tx_ble5" checked><span>BLE 5.0 LR (beta)</span></div>
+<div class="hint">Coded PHY extended advertising, long range -- requires a Coded-PHY-capable scanner/phone.</div>
+<div class="chk-row"><input type="checkbox" id="tx_ble5_ext1m" checked><span>BLE 5.0 1M (beta)</span></div>
+<div class="hint">Same full pack on ordinary 1M PHY -- a compatibility fallback for phones that support BLE5 Extended Advertising but not the optional Coded PHY.</div>
+
+<label for="wifi_ch">WiFi Channel</label>
+<select id="wifi_ch">
+<option value="1">1 &mdash; 2412 MHz</option><option value="2">2 &mdash; 2417 MHz</option><option value="3">3 &mdash; 2422 MHz</option>
+<option value="4">4 &mdash; 2427 MHz</option><option value="5">5 &mdash; 2432 MHz</option><option value="6">6 &mdash; 2437 MHz</option>
+<option value="7">7 &mdash; 2442 MHz</option><option value="8">8 &mdash; 2447 MHz</option><option value="9">9 &mdash; 2452 MHz</option>
+<option value="10">10 &mdash; 2457 MHz</option><option value="11">11 &mdash; 2462 MHz</option><option value="12">12 &mdash; 2467 MHz</option>
+<option value="13">13 &mdash; 2472 MHz</option>
+</select>
+<label for="wifi_pwr">WiFi Power (dBm)</label>
+<select id="wifi_pwr">
+<option value="2">2 dBm</option>
+<option value="5">5 dBm</option>
+<option value="7">7 dBm</option>
+<option value="8.5">8.5 dBm</option>
+<option value="11">11 dBm</option>
+<option value="13">13 dBm</option>
+<option value="14">14 dBm</option>
+<option value="15">15 dBm</option>
+<option value="16.5">16.5 dBm</option>
+<option value="18">18 dBm</option>
+<option value="20">20 dBm (max)</option>
+</select>
+<div class="hint">The radio only supports these 11 discrete power levels -- any other value would just get silently rounded down to whichever of these is next lowest.</div>
+
+<div class="row2">
+<div><label for="wifi_bcn">WiFi Beacon Rate (Hz)</label><input id="wifi_bcn" type="number" min="0" max="10" step=".1"></div>
+<div><label for="wifi_nan">WiFi NAN Rate (Hz)</label><input id="wifi_nan" type="number" min="0" max="10" step=".1"></div>
+</div>
+<div class="row2">
+<div><label for="bt4_rate">BLE4 Rate (Hz)</label><input id="bt4_rate" type="number" min="0" max="10" step=".1"></div>
+<div><label for="bt4_pwr">BLE4 Power (dBm)</label><input id="bt4_pwr" type="number" min="-27" max="9" step="1"></div>
+</div>
+<div class="row2">
+<div><label for="bt5_rate">BLE5 Rate (Hz)</label><input id="bt5_rate" type="number" min="0" max="10" step=".1"></div>
+<div><label for="bt5_pwr">BLE5 Power (dBm)</label><input id="bt5_pwr" type="number" min="-27" max="9" step="1"></div>
+<div class="hint">+9 dBm is the actual maximum on this chip's BLE radio.</div>
+</div>
+
+<button class="btn" onclick="saveConfig('Transmission')">Save Transmission</button>
+</div>
+</div>
+
+<!-- ACCESS POINT -->
+<div id="pane-ap" class="pane">
+<div class="card">
+<label for="wifi_ssid">WiFi SSID</label>
+<input id="wifi_ssid" maxlength="20">
+<label for="wifi_pass">WiFi Password</label>
+<input id="wifi_pass" type="password" maxlength="20" placeholder="Leave empty for open network" autocomplete="new-password">
+<div class="chk-row" id="websrv-row"><input type="checkbox" id="websrv_en"><span id="websrv_en_label">Web Server Enabled</span></div>
+<div class="hint">Disabling this makes the whole config panel unreachable over WiFi. Re-enabling requires a USB/serial connection ("webserver on" at the CLI) or a factory reset -- you'll be asked to confirm this before it saves.</div>
+<button class="btn" onclick="saveAccessPoint()">Save Access Point</button>
+</div>
+</div>
+
+<!-- FLIGHT CONTROLLER -->
+<div id="pane-fc" class="pane">
+<div class="card">
+<label for="protocol">FC Protocol</label>
+<select id="protocol">
+<option value="255">Auto-detect</option>
+<option value="1">MAVLink</option>
+<option value="2">MSP</option>
+<option value="3">NMEA</option>
+<option value="4">None (no FC)</option>
+</select>
+<label for="baud">UART Baud Rate</label>
+<select id="baud">
+<option value="9600">9600</option><option value="19200">19200</option>
+<option value="38400">38400</option><option value="57600">57600</option>
+<option value="115200">115200</option><option value="230400">230400</option>
+<option value="460800">460800</option><option value="921600">921600</option>
+</select>
+<label for="uart_tx_pin">GPS UART TX Pin (GPIO)</label>
+<input type="number" id="uart_tx_pin" min="0" max="48">
+<label for="uart_rx_pin">GPS UART RX Pin (GPIO)</label>
+<input type="number" id="uart_rx_pin" min="0" max="48">
+<div class="hint">Applies immediately on save, no reboot needed.</div>
+<label for="mav_sysid">MAVLink SysID</label>
+<input id="mav_sysid" type="number" min="0" max="254">
+<div class="chk-row"><input type="checkbox" id="bcast_pwr"><span>Broadcast without GPS</span></div>
+<button class="btn" onclick="saveConfig('Flight Controller')">Save Flight Controller</button>
+</div>
+<div class="card">
+<h3 style="font-size:.85em;margin-bottom:6px">&#x1f4e1; NMEA / UART Monitor <span id="uart-mirror-dot" class="uart-activity-dot" title="Lights up briefly on every new byte received"></span></h3>
+<div class="hint" style="margin-bottom:8px">Raw bytes seen on the GPS/FC UART line. Useful for confirming wiring and baud rate.</div>
+<pre id="uart-mirror-text" class="term-box" style="height:140px">(waiting for data...)</pre>
+</div>
+</div>
+
+<!-- HARDWARE -->
+<div id="pane-hw" class="pane">
+<div class="card">
+<label>Status LED</label>
+<div class="row2">
+<div><label for="led_r_gpio">Red Pin <span style="font-weight:400;font-size:1em;color:var(--txt-muted)">(no GPS fix / error)</span></label><input id="led_r_gpio" type="number" min="-1" max="48"></div>
+<div><label for="led_g_gpio">Green Pin <span style="font-weight:400;font-size:1em;color:var(--txt-muted)">(GPS lock, normal operation)</span></label><input id="led_g_gpio" type="number" min="-1" max="48"></div>
+</div>
+<label for="led_b_gpio">Blue LED &mdash; Compliance Pin</label>
+<input id="led_b_gpio" type="number" min="-1" max="48">
+<div class="hint">Red/Green = status color. Compliance Pin is an independent "ready to fly" indicator, lit solid when identity + GPS + active TX are all satisfied. Use -1 for unused channels.</div>
+
+<label for="buzzer_gpio" style="margin-top:20px">Buzzer Pin</label>
+<input id="buzzer_gpio" type="number" min="-1" max="48">
+<div class="hint">Plays a rising chime once at boot, and a separate upbeat chirp once satellite lock is achieved and the home position is saved. Use -1 to disable.</div>
+
+<button class="btn" onclick="saveConfig('Hardware')">Save Hardware</button>
+</div>
+</div>
+
+<!-- SYSTEM -->
+<div id="pane-sys" class="pane">
+<div class="card">
+<label for="lock_lvl">Lock Level</label>
+<select id="lock_lvl">
+<option value="0">0 &mdash; Normal</option>
+<option value="1">1 &mdash; Locked (signed commands only)</option>
+<option value="2">2 &mdash; eFuse permanent (IRREVERSIBLE)</option>
+</select>
+<div class="warn-hint">&#x26a0; Level 2 burns eFuses permanently. This cannot be undone! Set at least one public key first, or the device may become unreachable.</div>
+
+<label style="margin-top:18px">Options</label>
+<div class="chk-row"><input type="checkbox" id="opt_arm"><span>Force ARM OK</span></div>
+<div class="chk-row"><input type="checkbox" id="opt_nosave"><span>Don't save BasicID to NVS</span></div>
+<div class="chk-row"><input type="checkbox" id="opt_print"><span>Print MAVLink RID messages</span></div>
+<div class="chk-row"><input type="checkbox" id="opt_demo"><span>Demo mode (simulated GPS patrol)</span></div>
+<div class="chk-row"><input type="checkbox" id="opt_verbose"><span>Verbose transmission logging</span></div>
+<div class="hint">Prints each individual WiFi/BLE transmission attempt (mode, rate, UAS ID, GPS fix) to the Console tab, plus skip reasons when nothing is sent. Noisy — leave off for normal use.</div>
+
+<label style="margin-top:18px">Public Keys (for signed commands)</label>
+<input id="pubkey1" placeholder="Public key 1" style="margin-bottom:8px">
+<input id="pubkey2" placeholder="Public key 2" style="margin-bottom:8px">
+<input id="pubkey3" placeholder="Public key 3" style="margin-bottom:8px">
+<input id="pubkey4" placeholder="Public key 4" style="margin-bottom:8px">
+<input id="pubkey5" placeholder="Public key 5">
+
+<button class="btn" onclick="saveConfig('System')">Save System</button>
+</div>
+<div class="card">
+<button class="btn btn-sec" onclick="sendCommand('restart')">&#x1f504; Restart Device</button>
+<button class="btn btn-danger" onclick="confirmFactoryReset()">&#x21bb; Factory Reset</button>
+</div>
+</div>
+
+<!-- FIRMWARE -->
+<div id="pane-fw" class="pane">
+<div class="card">
+<div class="hint" style="margin-bottom:10px">Select a firmware .bin file to upload over the current WiFi connection. Do not power off the device while flashing.</div>
+<input type="file" id="fwfile" accept=".bin">
+<button class="btn" id="ota-btn" onclick="otaUpdate()">&#x1f4e4; Upload &amp; Flash</button>
+<div class="progress-wrap" id="ota-progress-wrap"><div class="progress-fill" id="ota-progress-fill"></div></div>
+<div class="hint" id="ota_progress" style="margin-top:8px"></div>
+</div>
+</div>
+
+<!-- SENSORS -->
+<div id="pane-sensors" class="pane">
+<div class="card">
+<div class="hint" style="margin-bottom:10px">Live sensor readings from the device. Refreshes every 2 seconds.</div>
+<div class="sensor-grid">
+<div class="sg-item"><span class="sg-label">Firmware</span><span class="sg-value" id="sns-fw">--</span></div>
+<div class="sg-item"><span class="sg-label">Protocol</span><span class="sg-value" id="sns-proto">--</span></div>
+<div class="sg-item"><span class="sg-label">GPS Fix</span><span class="sg-value" id="sns-gps">--</span></div>
+<div class="sg-item"><span class="sg-label">Satellites</span><span class="sg-value" id="sns-sats">--</span></div>
+<div class="sg-item"><span class="sg-label">Latitude</span><span class="sg-value" id="sns-lat">--</span></div>
+<div class="sg-item"><span class="sg-label">Longitude</span><span class="sg-value" id="sns-lon">--</span></div>
+<div class="sg-item"><span class="sg-label">Altitude</span><span class="sg-value" id="sns-alt">--</span></div>
+<div class="sg-item"><span class="sg-label">Speed</span><span class="sg-value" id="sns-speed">--</span></div>
+<div class="sg-item"><span class="sg-label">Heading</span><span class="sg-value" id="sns-heading">--</span></div>
+<div class="sg-item"><span class="sg-label">Fix Type</span><span class="sg-value" id="sns-fixtype">--</span></div>
+<div class="sg-item"><span class="sg-label">Home Dist</span><span class="sg-value" id="sns-home">--</span></div>
+<div class="sg-item"><span class="sg-label">Tx Total</span><span class="sg-value" id="sns-tx-total">--</span></div>
+<div class="sg-item"><span class="sg-label">Tx Rate</span><span class="sg-value" id="sns-tx-rate">--</span></div>
+<div class="sg-item"><span class="sg-label">WiFi Beacon</span><span class="sg-value" id="sns-tx-wifi">--</span></div>
+<div class="sg-item"><span class="sg-label">WiFi NAN</span><span class="sg-value" id="sns-tx-nan">--</span></div>
+<div class="sg-item"><span class="sg-label">BLE 4.0</span><span class="sg-value" id="sns-tx-ble4">--</span></div>
+<div class="sg-item"><span class="sg-label">BLE 5.0</span><span class="sg-value" id="sns-tx-ble5">--</span></div>
+<div class="sg-item"><span class="sg-label">CPU Temp</span><span class="sg-value" id="sns-temp">--</span></div>
+<div class="sg-item"><span class="sg-label">Uptime</span><span class="sg-value" id="sns-uptime">--</span></div>
+</div>
+</div>
+</div>
+
+<!-- CONSOLE -->
+<div id="pane-console" class="pane">
+<div class="card">
+<h3 style="font-size:.85em;margin-bottom:8px">&#x1f4bb; Console Output</h3>
+<pre id="term-output" class="term-box" style="height:260px">Waiting for logs...</pre>
+<div style="display:flex;gap:6px;margin-top:8px">
+<button class="btn-sm" onclick="copyTerm()">&#x1f4cb; Copy</button>
+<button class="btn-sm" onclick="clearTerm()">&#x1f5d1; Clear</button>
+</div>
+<label style="margin-top:16px">Send Command</label>
+<input type="text" id="term-input" placeholder="restart, status, reset..." onkeydown="if(event.key==='Enter')sendCmd()">
+<label style="margin-top:10px">X-Signature (only needed if device is locked)</label>
+<input type="text" id="term-sig" placeholder="base64 signature">
+<button class="btn" onclick="sendCmd()">Send</button>
+</div>
+</div>
+
+<!-- PRESETS -->
+<div id="pane-presets" class="pane">
+<div class="card">
+<div class="hint" style="margin-bottom:10px">Save and load named configuration profiles, stored in this browser (not synced with the desktop UI's browser storage).</div>
+<input id="preset-name" placeholder="New preset name...">
+<button class="btn" onclick="savePreset()">&#x1f4be; Save Current Config As Preset</button>
+<div style="display:flex;gap:8px;margin-top:10px">
+<button class="btn-sm" style="flex:1" onclick="exportAllPresets()">&#x1f4e5; Export All</button>
+<button class="btn-sm" style="flex:1" onclick="$('preset-import-file').click()">&#x1f4e4; Import</button>
+</div>
+<input type="file" id="preset-import-file" accept=".json" style="display:none" onchange="importPresets(this)">
+<div id="preset-list" style="margin-top:14px">No presets saved yet.</div>
+</div>
+</div>
+
+<!-- COMPLIANCE -->
+<div id="pane-compliance" class="pane">
+<div class="card">
+<div class="hint" style="margin-bottom:10px">Checks your current in-page settings against common Remote ID regulatory requirements. Save the relevant tab first if you just changed something. This firmware can't detect your actual location, so "EU/EASA baseline" is just a fixed default, not real detection &mdash; pick your actual region for an accurate result. UK CAA and Italy's ENAC directly implement the EASA regulation for Remote ID, so their requirements are genuinely identical to EASA's; FAA differs on a couple of specific items.</div>
+<label for="compliance-region">Region</label>
+<select id="compliance-region" onchange="updateCompliance()">
+<option value="auto">EU/EASA baseline (default)</option>
+<option value="FAA">FAA (USA)</option>
+<option value="EASA">EASA (EU)</option>
+<option value="CAA">CAA (UK)</option>
+<option value="ENAC">ENAC (Italy)</option>
+</select>
+<button class="btn-sm" style="margin-top:10px" onclick="updateCompliance()">&#x1f504; Refresh</button>
+<div id="compliance-list" style="margin-top:14px"></div>
+</div>
+</div>
+
+<!-- SECURITY -->
+<div id="pane-security" class="pane">
+<div class="card">
+<div class="hint" style="margin-bottom:10px">Optionally protect this web panel with a password. When set, a login prompt appears before any settings are shown. To disable, clear the field and save. If you forget the password, a hardware factory reset clears it.</div>
+<form id="f-security" onsubmit="saveSecurity(event)">
+<label>Access Password</label>
+<div style="display:flex;gap:6px">
+<input type="password" id="sec-password" maxlength="32" placeholder="Leave empty to disable" style="flex:1" autocomplete="new-password">
+<button type="button" class="btn-sm" onclick="toggleSecPwd()">&#x1f441;</button>
+</div>
+<div class="hint">Min 4 chars. If set, login is required to access any page.</div>
+<label for="sec-timeout">Session Timeout (minutes)</label>
+<select id="sec-timeout">
+<option value="5">5 min</option>
+<option value="15" selected>15 min</option>
+<option value="30">30 min</option>
+<option value="60">60 min</option>
+<option value="0">Never</option>
+</select>
+<button class="btn" type="submit" style="margin-top:12px">Save Security</button>
+</form>
+</div>
+</div>
+
+<div class="toast-wrap" id="toast-wrap"></div>
+
+<div class="modal-bg" id="confirm-modal-bg">
+<div class="modal">
+<h3 id="confirm-modal-title">&#x26a0; Confirm</h3>
+<p id="confirm-modal-msg"></p>
+<button class="btn btn-sec" onclick="closeConfirm()">Cancel</button>
+<button class="btn btn-danger" id="confirm-modal-btn" style="margin-top:28px" onclick="runConfirm()">Confirm</button>
+</div>
+</div>
+
+<script>
+function $(id){return document.getElementById(id)}
+
+function setTab(name){
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.toggle('active',b.dataset.tab===name)});
+  document.querySelectorAll('.pane').forEach(function(p){p.classList.toggle('active',p.id==='pane-'+name)});
+  if(name==='fc')startUartMirrorPoll();else stopUartMirrorPoll();
+  if(name==='presets')getPresetList();
+  if(name==='compliance')updateCompliance();
+}
+
+/* ---------- Generic confirm modal (Cancel is first/prominent, the
+ * destructive action sits well below it with a wide gap -- so a hasty
+ * repeat-tap in the same screen spot that opened the dialog lands on
+ * Cancel, not on the irreversible action). ---------- */
+var _confirmCb=null;
+function showConfirm(title,msg,btnLabel,cb,topAction){
+  $('confirm-modal-title').textContent=title;
+  $('confirm-modal-msg').textContent=msg;
+  $('confirm-modal-btn').textContent=btnLabel;
+  _confirmCb=cb;
+  var modalBox=document.querySelector('#confirm-modal-bg .modal');
+  var cancelBtn=modalBox.querySelector('.btn-sec');
+  var confirmBtn=$('confirm-modal-btn');
+  cancelBtn.style.display=''; /* undo any previous showNotice() hiding it */
+  confirmBtn.classList.add('btn-danger'); /* undo any previous showNotice() neutral styling */
+  if(topAction){
+    /* Confirm button goes at the absolute top of the box, above the
+     * title/message -- Cancel stays at the bottom (append puts it back
+     * after title/msg in case a PREVIOUS call left it up top too). Only
+     * meant for cases like disabling the web server, where "Cancel"
+     * isn't the safe default (leaving it enabled) so it doesn't need
+     * the usual hasty-repeat-tap protection of being the prominent
+     * option. */
+    modalBox.insertBefore(confirmBtn,modalBox.firstChild);
+    modalBox.appendChild(cancelBtn);
+    confirmBtn.style.marginTop='';
+    confirmBtn.style.marginBottom='16px';
+    cancelBtn.style.marginTop='';
+  }else{
+    /* Restore both buttons to their normal spot at the bottom, after
+     * title/msg -- undoes a previous topAction call that relocated
+     * confirmBtn to the very front of the box. */
+    modalBox.appendChild(cancelBtn);
+    modalBox.appendChild(confirmBtn);
+    cancelBtn.style.marginTop='';
+    confirmBtn.style.marginTop='28px';
+    confirmBtn.style.marginBottom='';
+  }
+  $('confirm-modal-bg').classList.add('show');
+}
+function closeConfirm(){$('confirm-modal-bg').classList.remove('show');_confirmCb=null}
+function runConfirm(){var cb=_confirmCb;closeConfirm();if(cb)cb()}
+
+/* Persistent single-button notice (reuses the confirm modal's markup
+ * with Cancel hidden) -- for things worth a must-dismiss dialog rather
+ * than a toast that could fade before it's noticed, like a heads-up
+ * that the page's own WiFi connection is about to drop. */
+function showNotice(title,msg){
+  $('confirm-modal-title').textContent=title;
+  $('confirm-modal-msg').textContent=msg;
+  $('confirm-modal-btn').textContent='OK';
+  _confirmCb=null;
+  var modalBox=document.querySelector('#confirm-modal-bg .modal');
+  var cancelBtn=modalBox.querySelector('.btn-sec');
+  var confirmBtn=$('confirm-modal-btn');
+  cancelBtn.style.display='none';
+  confirmBtn.classList.remove('btn-danger');
+  modalBox.appendChild(confirmBtn);
+  confirmBtn.style.marginTop='16px';
+  confirmBtn.style.marginBottom='';
+  $('confirm-modal-bg').classList.add('show');
+}
+
+function showMsg(t,isErr){
+  var wrap=$('toast-wrap');
+  var el=document.createElement('div');
+  el.className='toast'+(isErr?' err':'');
+  el.textContent=t;
+  wrap.appendChild(el);
+  requestAnimationFrame(function(){el.classList.add('show')});
+  setTimeout(function(){el.classList.remove('show');setTimeout(function(){el.remove()},250)},isErr?4500:2200);
+}
+
+/* ---------- Pin conflict warnings (mirrors the desktop UI's logic) ---------- */
+/* ---------- ID Type-aware format guidance and validation. Serial
+ * Number and UTM UUID have precise, standardized formats we can
+ * actually validate. CAA Registration and Session ID don't --
+ * registration-number formats are set independently by each country's
+ * aviation authority, and ASTM F3411 leaves Session ID as an opaque
+ * token -- so those two are illustrative examples with a lenient
+ * sanity check only, not a real format validator. ---------- */
+function idFormatInfo(idType){
+  switch(idType){
+    case 1: return {example:'e.g. ABCD61A2B3C',note:'ANSI/CTA-2063-A serial: 4-char manufacturer code + length digit (1–9 or A–F) + serial of that length (A–Z, 0–9, no O or I)'};
+    case 2: return {example:'e.g. GBR-OP-123456',note:'CAA/national registration number — format is set by your aviation authority, not standardized internationally'};
+    case 3: return {example:'e.g. 1a2b3c4d5e6f7890abcd',note:'UTM-assigned session identifier, compact form (max 20 chars — this field is too short for a full RFC 4122 UUID with dashes)'};
+    case 4: return {example:'e.g. SESSION-A1B2C3',note:'Any 1–20 character session token, unique per flight'};
+    default: return {example:'',note:'Select an ID Type above to see the expected format'};
+  }
+}
+function validateUasId(s){
+  s=s.toUpperCase();
+  if(s.length<6||s.length>20)return{ok:false,msg:'Must be 6–20 characters (4-char mfr code + length code + serial)'};
+  var mfr=s.slice(0,4);
+  if(!/^[A-Z0-9]{4}$/.test(mfr))return{ok:false,msg:'First 4 chars must be alphanumeric manufacturer code'};
+  var lc=s[4];
+  var lcVal=lc>='1'&&lc<='9'?parseInt(lc):lc>='A'&&lc<='F'?lc.charCodeAt(0)-55:-1;
+  if(lcVal<1||lcVal>15)return{ok:false,msg:'Position 5 must be length code 1–9 or A–F (1–15)'};
+  var serial=s.slice(5);
+  if(serial.length!==lcVal)return{ok:false,msg:'Serial length ('+serial.length+') does not match length code ('+lcVal+')'};
+  if(/[OI]/i.test(serial))return{ok:false,msg:'Serial must not contain letters O or I'};
+  if(!/^[A-Z0-9]+$/.test(serial))return{ok:false,msg:'Serial must be alphanumeric uppercase only'};
+  return{ok:true}
+}
+function validateIdFormat(idType,v){
+  if(idType===1)return validateUasId(v);
+  if(idType===3){
+    return /^[A-Za-z0-9-]{4,20}$/.test(v)
+      ?{ok:true}:{ok:false,msg:'Must be 4–20 alphanumeric characters (a full 36-char UUID does not fit this 20-char field)'};
+  }
+  if(idType===2){
+    return /^[A-Za-z0-9-]{4,20}$/.test(v)
+      ?{ok:true}:{ok:false,msg:'Registration numbers are typically 4–20 alphanumeric characters (exact format varies by authority)'};
+  }
+  if(idType===4){
+    return (v.length>=1&&v.length<=20)?{ok:true}:{ok:false,msg:'Session ID must be 1–20 characters'};
+  }
+  return {ok:true};
+}
+function updateIdFormatHints(){
+  var idType=parseInt($('id_type').value);
+  var info1=idFormatInfo(idType);
+  var ex1=$('uas_id-example');
+  if(ex1)ex1.textContent=(info1.example?info1.example+' — ':'')+info1.note;
+  checkIdField('uas_id',idType);
+
+  var idType2=parseInt($('id_type2').value);
+  var info2=idFormatInfo(idType2);
+  var ex2=$('uas_id2-example');
+  if(ex2)ex2.textContent=idType2===0?'':(info2.example?info2.example+' — ':'')+info2.note;
+  checkIdField('uas_id2',idType2);
+}
+function checkIdField(fieldId,idType){
+  var el=$(fieldId),warnEl=$(fieldId+'-warn');
+  if(!el||!warnEl)return;
+  var v=el.value.trim();
+  if(!v||idType===0){warnEl.style.display='none';el.classList.remove('warn');return}
+  var r=validateIdFormat(idType,v);
+  if(!r.ok){warnEl.style.display='block';warnEl.textContent='⚠ '+r.msg;el.classList.add('warn')}
+  else{warnEl.style.display='none';el.classList.remove('warn')}
+}
+['id_type','id_type2'].forEach(function(id){var el=$(id);if(el)el.addEventListener('change',updateIdFormatHints)});
+['uas_id','uas_id2'].forEach(function(id){var el=$(id);if(el){
+  el.addEventListener('input',function(){checkIdField(id,parseInt($(id==='uas_id'?'id_type':'id_type2').value))});
+  el.addEventListener('change',function(){checkIdField(id,parseInt($(id==='uas_id'?'id_type':'id_type2').value))});
+}});
+
+function checkPinConflicts(){
+  var pinFields={buzzer_gpio:'Buzzer Pin',led_r_gpio:'Red Pin',led_g_gpio:'Green Pin',led_b_gpio:'Blue LED / Compliance Pin',uart_tx_pin:'GPS UART TX Pin',uart_rx_pin:'GPS UART RX Pin'};
+  var values={};
+  Object.keys(pinFields).forEach(function(id){var el=$(id);values[id]=el?parseInt(el.value):NaN});
+  Object.keys(pinFields).forEach(function(id){
+    var el=$(id);
+    if(!el)return;
+    var warnEl=$(id+'-warn');
+    if(!warnEl){
+      warnEl=document.createElement('div');
+      warnEl.id=id+'-warn';
+      warnEl.className='warn-hint';
+      warnEl.style.display='none';
+      el.parentNode.insertBefore(warnEl,el.nextSibling)
+    }
+    var v=values[id],conflictWith=null;
+    if(!isNaN(v)&&v>=0){
+      Object.keys(pinFields).forEach(function(otherId){
+        if(otherId===id||conflictWith)return;
+        if(values[otherId]===v)conflictWith=pinFields[otherId];
+      });
+    }
+    if(conflictWith){warnEl.style.display='block';warnEl.innerHTML='⚠ Conflicts with '+conflictWith;el.classList.add('warn')}
+    else{warnEl.style.display='none';el.classList.remove('warn')}
+  });
+}
+['buzzer_gpio','led_r_gpio','led_g_gpio','led_b_gpio','uart_tx_pin','uart_rx_pin'].forEach(function(id){
+  var el=$(id);if(el){el.addEventListener('input',checkPinConflicts);el.addEventListener('change',checkPinConflicts)}
+});
+
+/* ---------- Config load / save (field IDs match the desktop UI's JSON keys 1:1) ---------- */
+function populateForm(c){
+  $('uas_id').value=c.uas_id||'';
+  $('id_type').value=c.id_type||2;
+  $('ua_type').value=c.ua_type!==undefined?c.ua_type:2;
+  $('op_id').value=c.operator_id||'';
+  $('self_id_text').value=c.self_id_text||'';
+  $('op_lat').value=c.operator_lat||0;
+  $('op_lon').value=c.operator_lon||0;
+  $('op_alt').value=c.operator_alt||0;
+  $('uas_id2').value=c.uas_id_2||'';
+  $('id_type2').value=c.id_type_2||0;
+  $('ua_type2').value=c.ua_type_2||0;
+
+  $('tx_wifi_bcn').checked=!!(c.tx_modes&1);
+  $('tx_wifi_nan').checked=!!(c.tx_modes&2);
+  $('tx_ble4').checked=!!(c.tx_modes&4);
+  $('tx_ble5').checked=!!(c.tx_modes&8);
+  $('tx_ble5_ext1m').checked=!!(c.tx_modes&16);
+  $('wifi_ch').value=c.wifi_channel||6;
+  $('wifi_pwr').value=c.wifi_power_dbm!==undefined?c.wifi_power_dbm:20;
+  $('wifi_bcn').value=c.wifi_bcn_rate_hz!==undefined?c.wifi_bcn_rate_hz:5;
+  $('wifi_nan').value=c.wifi_nan_rate_hz||0;
+  $('bt4_rate').value=c.ble4_rate_hz!==undefined?c.ble4_rate_hz:5;
+  $('bt4_pwr').value=c.ble4_power_dbm!==undefined?c.ble4_power_dbm:9;
+  $('bt5_rate').value=c.ble5_rate_hz!==undefined?c.ble5_rate_hz:5;
+  $('bt5_pwr').value=c.ble5_power_dbm!==undefined?c.ble5_power_dbm:9;
+
+  $('wifi_ssid').value=c.wifi_ssid||'ESP-RID';
+  $('wifi_pass').value=c.wifi_password||'';
+  $('websrv_en').checked=!!c.webserver_en;
+  updateWebsrvLabel();
+
+  $('protocol').value=c.protocol!==undefined?c.protocol:255;
+  $('baud').value=c.baud_rate||57600;
+  $('uart_tx_pin').value=c.tx_pin!==undefined?c.tx_pin:10;
+  $('uart_rx_pin').value=c.rx_pin!==undefined?c.rx_pin:11;
+  $('mav_sysid').value=c.mavlink_sysid||0;
+  $('bcast_pwr').checked=!!c.bcast_powerup;
+
+  $('led_r_gpio').value=c.led_r_gpio!==undefined?c.led_r_gpio:-1;
+  $('led_g_gpio').value=c.led_g_gpio!==undefined?c.led_g_gpio:-1;
+  $('led_b_gpio').value=c.led_b_gpio!==undefined?c.led_b_gpio:-1;
+  $('buzzer_gpio').value=c.buzzer_gpio!==undefined?c.buzzer_gpio:9;
+
+  $('lock_lvl').value=c.lock_level||0;
+  $('opt_arm').checked=!!(c.options&1);
+  $('opt_nosave').checked=!!(c.options&2);
+  $('opt_print').checked=!!(c.options&4);
+  $('opt_demo').checked=!!(c.options&8);
+  $('opt_verbose').checked=!!(c.options&512);
+  for(var i=1;i<=5;i++){$('pubkey'+i).value=c['public_key_'+i]||''}
+
+  checkPinConflicts();
+  updateIdFormatHints();
+}
+
+function collectForm(c){
+  /* Start from the last-known full config (c) so fields not present on
+   * this particular page (e.g. ws2812/DroneCAN pins with no mobile UI)
+   * round-trip unchanged instead of getting clobbered by JS defaults. */
+  var out=Object.assign({},c);
+  out.uas_id=$('uas_id').value;
+  out.id_type=parseInt($('id_type').value);
+  out.ua_type=parseInt($('ua_type').value);
+  out.operator_id=$('op_id').value;
+  out.self_id_text=$('self_id_text').value;
+  out.operator_lat=parseFloat($('op_lat').value)||0;
+  out.operator_lon=parseFloat($('op_lon').value)||0;
+  out.operator_alt=parseFloat($('op_alt').value)||0;
+  out.uas_id_2=$('uas_id2').value;
+  out.id_type_2=parseInt($('id_type2').value);
+  out.ua_type_2=parseInt($('ua_type2').value);
+
+  out.tx_modes=($('tx_wifi_bcn').checked?1:0)|($('tx_wifi_nan').checked?2:0)|($('tx_ble4').checked?4:0)|($('tx_ble5').checked?8:0)|($('tx_ble5_ext1m').checked?16:0);
+  out.wifi_channel=parseInt($('wifi_ch').value);
+  out.wifi_power_dbm=parseFloat($('wifi_pwr').value);
+  out.wifi_bcn_rate_hz=parseFloat($('wifi_bcn').value);
+  out.wifi_nan_rate_hz=parseFloat($('wifi_nan').value);
+  out.ble4_rate_hz=parseFloat($('bt4_rate').value);
+  out.ble4_power_dbm=parseFloat($('bt4_pwr').value);
+  out.ble5_rate_hz=parseFloat($('bt5_rate').value);
+  out.ble5_power_dbm=parseFloat($('bt5_pwr').value);
+
+  out.wifi_ssid=$('wifi_ssid').value;
+  out.wifi_password=$('wifi_pass').value;
+  out.webserver_en=$('websrv_en').checked?1:0;
+
+  out.protocol=parseInt($('protocol').value);
+  out.baud_rate=parseInt($('baud').value);
+  out.tx_pin=parseInt($('uart_tx_pin').value);
+  out.rx_pin=parseInt($('uart_rx_pin').value);
+  out.mavlink_sysid=parseInt($('mav_sysid').value);
+  out.bcast_powerup=$('bcast_pwr').checked?1:0;
+
+  out.led_r_gpio=parseInt($('led_r_gpio').value);
+  out.led_g_gpio=parseInt($('led_g_gpio').value);
+  out.led_b_gpio=parseInt($('led_b_gpio').value);
+  out.buzzer_gpio=parseInt($('buzzer_gpio').value);
+
+  out.lock_level=parseInt($('lock_lvl').value);
+  out.options=($('opt_arm').checked?1:0)|($('opt_nosave').checked?2:0)|($('opt_print').checked?4:0)|($('opt_demo').checked?8:0)|($('opt_verbose').checked?512:0);
+  for(var i=1;i<=5;i++){out['public_key_'+i]=$('pubkey'+i).value}
+
+  return out;
+}
+
+var lastConfig=null;
+/* Set true only once getCfg() has successfully populated the form
+ * from a real device response. collectForm() reads every field's
+ * current DOM value regardless of which section's Save button was
+ * clicked -- saving before this is true would push each field's
+ * blank HTML default (uas_id="", etc.) over whatever the device
+ * actually had stored, silently wiping it. */
+var configLoaded=false;
+
+function getCfg(retriesLeft){
+  if(retriesLeft===undefined)retriesLeft=2 /* 3 total attempts before giving up */
+  return fetch('/api/config').then(function(r){return r.json()}).then(function(c){
+    lastConfig=c;
+    populateForm(c);
+    configLoaded=true;
+    connOk();
+  }).catch(function(){
+    if(retriesLeft>0){
+      setTimeout(function(){getCfg(retriesLeft-1)},1500);
+      return;
+    }
+    setConn(false);
+  });
+}
+
+function updateWebsrvLabel(){
+  var cb=$('websrv_en'),span=$('websrv_en_label');
+  if(cb&&span) span.textContent=cb.checked?'Web Server Enabled':'Web Server Disabled';
+}
+$('websrv_en').addEventListener('change',updateWebsrvLabel);
+
+function saveAccessPoint(){
+  /* A non-default SSID or any password means the browser's own WiFi
+   * connection to this device is about to be affected -- flag it so
+   * saveConfig() can follow up with a persistent reconnect notice
+   * instead of just the usual toast. */
+  var apCredsChanged=($('wifi_pass').value.length>0 || $('wifi_ssid').value!=='ESP-RID');
+  if(!$('websrv_en').checked){
+    showConfirm(
+      '⚠ Disabling the Web Server',
+      'This makes the whole config panel unreachable over WiFi -- you will not be able to reconnect and turn it back on from here. To re-enable it: connect a USB/serial cable and run "webserver on" at the CLI console (the in-page Console will not work, since it depends on this same server), or perform a factory reset (erases all settings). Proceed?',
+      'I Understand, Disable',
+      function(){saveConfig('Access Point',apCredsChanged)},
+      true
+    );
+    return;
+  }
+  saveConfig('Access Point',apCredsChanged);
+}
+
+function saveConfig(label,reconnectNotice){
+  if(!configLoaded){showMsg('Cannot save: config hasn\'t finished loading from the device yet. Wait a moment and try again.',1);return}
+  var body=JSON.stringify(collectForm(lastConfig||{}));
+  fetch('/api/config',{method:'POST',headers:{'Content-Type':'application/json'},body:body})
+  .then(function(r){return r.json()})
+  .then(function(j){
+    if(j.warning)showMsg(j.warning,1);
+    showMsg(label+' saved');
+    if(reconnectNotice){
+      showNotice('Reconnect to WiFi','The access point\'s SSID and/or password just changed. Your device will be disconnected shortly -- reconnect to the WiFi network using the new credentials to keep using this panel.');
+    }
+    return getCfg();
+  })
+  .catch(function(){showMsg('Save failed - check connection',1)});
+}
+
+/* ---------- Status polling ---------- */
+function setConn(ok){
+  $('conn-dot').classList.toggle('ok',ok);
+  $('conn-text').textContent=ok?'Connected':'Disconnected';
+}
+var connFailCount=0;
+/* Tolerate up to 2 consecutive failed polls before actually showing
+ * "Disconnected" -- a single dropped WiFi packet shouldn't flash the
+ * status text every 2s. */
+function connFail(){
+  connFailCount++;
+  if(connFailCount>=3)setConn(false);
+}
+function connOk(){
+  connFailCount=0;
+  setConn(true);
+}
+
+function updateStatus(s){
+  var protoNames=['Unknown','MAVLink','MSP','NMEA','None'];
+  var ok=s.gps_valid&&s.fix_type>=2&&s.lat;
+  $('st-gps').textContent=ok?'✅ OK':'❌ No Fix';
+  $('st-gps-box').className='stat-box '+(ok?'ok':'no');
+  $('st-sat').textContent=ok?(s.satellites+' satellites'):'Waiting for GPS...';
+  $('st-proto').textContent=protoNames[s.protocol]||'Unknown';
+  $('st-lat').textContent=s.lat?s.lat.toFixed(6):'-';
+  $('st-lon').textContent=s.lon?s.lon.toFixed(6):'-';
+  $('st-alt').textContent=s.alt?s.alt.toFixed(1)+' m':'-';
+  $('st-speed').textContent=s.speed!==undefined?s.speed.toFixed(1)+' m/s':'-';
+  $('st-fwver').textContent=s.fw_version||'—';
+
+  var homeOk=!!s.home_set;
+  $('st-home-box').className='stat-box '+(homeOk?'ok':'no');
+  $('st-home-status').textContent=homeOk?'✅ Locked Home Position':'❌ No Home Set';
+  $('st-home-lat').textContent=homeOk?s.home_lat.toFixed(6):'-';
+  $('st-home-lon').textContent=homeOk?s.home_lon.toFixed(6):'-';
+
+  $('st-tx-total').textContent='Total: '+(s.tx_total||0).toLocaleString();
+  $('st-tx-wifi').textContent=(s.tx_wifi_bcn||0).toLocaleString();
+  $('st-tx-nan').textContent=(s.tx_wifi_nan||0).toLocaleString();
+  $('st-tx-ble4').textContent=(s.tx_ble4||0).toLocaleString();
+  $('st-tx-ble5').textContent=(s.tx_ble5||0).toLocaleString();
+  if(s.temperature!==undefined)$('st-temp').textContent='CPU '+s.temperature.toFixed(0)+'°C';
+}
+
+function pollStatusOnce(){
+  fetch('/api/status').then(function(r){return r.json()}).then(function(s){
+    lastStatus=s;
+    updateStatus(s);
+    updateSensorData(s);
+    connOk();
+  }).catch(connFail);
+}
+pollStatusOnce();
+setInterval(pollStatusOnce,2000);
+
+/* ---------- Commands ---------- */
+function sendCommand(cmd){
+  fetch('/api/command',{method:'POST',body:JSON.stringify(cmd)})
+  .then(function(r){return r.json()})
+  .then(function(j){showMsg(j.status||'Command sent')})
+  .catch(function(){showMsg('Command failed',1)});
+}
+function confirmFactoryReset(){
+  showConfirm('⚠ Factory Reset','This erases all configuration and restarts the device. This cannot be undone.','Yes, Reset Everything',doFactoryReset);
+}
+function doFactoryReset(){
+  fetch('/api/reset',{method:'POST'}).then(function(){showMsg('Factory reset, rebooting...')}).catch(function(){});
+}
+
+/* ---------- Console / log viewer ---------- */
+function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+var lastLogCount=0;
+function pollLogs(){
+  fetch('/api/logs').then(function(r){return r.json()}).then(function(entries){
+    if(!entries||entries.length===0)return;
+    var out=$('term-output');
+    if(!out)return;
+    if(out.textContent==='Waiting for logs...')out.textContent='';
+    var shouldScroll=out.scrollTop>=out.scrollHeight-out.clientHeight-20||lastLogCount===0;
+    entries.forEach(function(e){
+      var d=document.createElement('div');d.className='line lv-'+e.l;
+      d.innerHTML='<span class="ts">['+(e.t/1000).toFixed(1)+'s]</span>'+escHtml(e.m);
+      out.appendChild(d);
+    });
+    lastLogCount=entries.length;
+    if(shouldScroll)out.scrollTop=out.scrollHeight;
+  }).catch(function(){});
+}
+setInterval(pollLogs,2000);
+function sendCmd(){
+  var inp=$('term-input'),cmd=inp.value.trim();
+  if(!cmd)return;
+  inp.value='';
+  var out=$('term-output');
+  if(out.textContent==='Waiting for logs...')out.textContent='';
+  var d=document.createElement('div');d.className='line lv-V';
+  d.innerHTML='<span class="ts">[cmd]</span>$ '+escHtml(cmd);
+  out.appendChild(d);
+  out.scrollTop=out.scrollHeight;
+  var headers={'Content-Type':'text/plain'};
+  var sig=$('term-sig').value.trim();
+  if(sig)headers['X-Signature']=sig;
+  fetch('/api/command',{method:'POST',headers:headers,body:cmd})
+  .then(function(r){return r.json()})
+  .then(function(j){
+    if(j.status&&j.status!=='ok'){
+      var d2=document.createElement('div');d2.className='line lv-W';
+      d2.innerHTML='<span class="ts">[resp]</span>'+escHtml(j.status);
+      out.appendChild(d2);
+      out.scrollTop=out.scrollHeight;
+      if(j.status==='invalid_signature')showMsg('Device is locked - paste a valid signature',1);
+    }
+  }).catch(function(){showMsg('Command failed',1)});
+}
+function clearTerm(){$('term-output').innerHTML='';lastLogCount=0}
+function copyTerm(){
+  var out=$('term-output'),txt='';
+  out.querySelectorAll('.line').forEach(function(l){txt+=l.textContent+'\n'});
+  if(!txt){showMsg('Nothing to copy',1);return}
+  navigator.clipboard.writeText(txt).then(function(){showMsg('Console copied')}).catch(function(){showMsg('Failed to copy',1)});
+}
+
+/* ---------- NMEA / UART mini-monitor (only polled while the Flight
+ * Controller tab is visible, matching the desktop UI) ---------- */
+var uartMirrorInterval=null;
+function startUartMirrorPoll(){
+  if(uartMirrorInterval)return;
+  pollUartMirror();
+  uartMirrorInterval=setInterval(pollUartMirror,500);
+}
+function stopUartMirrorPoll(){
+  if(uartMirrorInterval){clearInterval(uartMirrorInterval);uartMirrorInterval=null}
+}
+var lastUartTotal=-1,uartDotTimer=null;
+function pollUartMirror(){
+  fetch('/api/uart_mirror').then(function(r){return r.json()}).then(function(d){
+    var el=$('uart-mirror-text');
+    if(!el)return;
+    el.textContent=(d.data&&d.data.length)?d.data:'(no data received yet)';
+    el.scrollTop=el.scrollHeight;
+    if(typeof d.total==='number'&&lastUartTotal>=0&&d.total!==lastUartTotal){
+      var dot=$('uart-mirror-dot');
+      if(dot){
+        dot.classList.add('pulse');
+        if(uartDotTimer)clearTimeout(uartDotTimer);
+        uartDotTimer=setTimeout(function(){dot.classList.remove('pulse')},400);
+      }
+    }
+    if(typeof d.total==='number')lastUartTotal=d.total;
+  }).catch(function(){});
+}
+
+/* ---------- Presets (localStorage, same storage key as the desktop
+ * UI -- but browser-local, so presets saved on desktop won't appear
+ * here unless it's literally the same browser) ---------- */
+function loadPresets(){try{var d=localStorage.getItem('rid_presets');return d?JSON.parse(d):{}}catch(e){return{}}}
+function savePresets(d){try{localStorage.setItem('rid_presets',JSON.stringify(d))}catch(e){}}
+function getPresetList(){
+  var p=loadPresets(),keys=Object.keys(p).sort(),list=$('preset-list');
+  if(!list)return;
+  if(!keys.length){list.innerHTML='<div class="hint">No presets saved yet.</div>';return}
+  list.innerHTML='';
+  keys.forEach(function(k){
+    var item=p[k];
+    var div=document.createElement('div');div.className='preset-item';
+    div.innerHTML='<span class="preset-name">'+escHtml(k)+'<br><span class="preset-ts">'+(item.ts||'')+'</span></span>'+
+      '<button onclick="applyPreset(\''+k.replace(/'/g,"\\'")+'\')">Apply</button>'+
+      '<button class="del" onclick="deletePreset(\''+k.replace(/'/g,"\\'")+'\')">Delete</button>';
+    list.appendChild(div);
+  });
+}
+function savePreset(){
+  var nameEl=$('preset-name'),n=nameEl.value.trim();
+  if(!n){showMsg('Enter a preset name',1);return}
+  nameEl.value='';
+  fetch('/api/config').then(function(r){return r.json()}).then(function(c){
+    var p=loadPresets();
+    p[n]={config:c,ts:new Date().toLocaleString()};
+    savePresets(p);
+    getPresetList();
+    showMsg('Preset "'+n+'" saved');
+  }).catch(function(){showMsg('Failed to fetch config',1)});
+}
+function applyPreset(name){
+  var p=loadPresets();
+  if(!p[name]){showMsg('Preset not found',1);return}
+  showConfirm('Apply Preset','Load "'+name+'" configuration? This overwrites current settings.','Apply',function(){
+    fetch('/api/config',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p[name].config)})
+    .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
+    .then(function(){showMsg('Preset "'+name+'" applied');getCfg()})
+    .catch(function(e){showMsg('Failed: '+e.message,1)});
+  });
+}
+function deletePreset(name){
+  var p=loadPresets();
+  if(!p[name])return;
+  delete p[name];
+  savePresets(p);
+  getPresetList();
+  showMsg('Preset "'+name+'" deleted');
+}
+function exportAllPresets(){
+  var p=loadPresets(),keys=Object.keys(p);
+  if(!keys.length){showMsg('No presets to export',1);return}
+  var b=new Blob([JSON.stringify(p,null,2)],{type:'application/json'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='esp-rid-presets.json';a.click();
+  showMsg('Exported '+keys.length+' preset(s)');
+}
+function importPresets(el){
+  var f=el.files[0];if(!f)return;
+  var r=new FileReader();
+  r.onload=function(e){
+    try{
+      var d=JSON.parse(e.target.result);
+      var p=loadPresets(),c=0;
+      Object.keys(d).forEach(function(k){if(!p[k])c++;p[k]=d[k]});
+      savePresets(p);getPresetList();
+      showMsg('Imported '+c+' new preset(s)');
+    }catch(ex){showMsg('Invalid file',1)}
+    el.value='';
+  };
+  r.readAsText(f);
+}
+
+/* ---------- Compliance checklist ---------- */
+/* 'auto' has no real signal to detect a region from (no locale/WiFi-
+ * country tracked anywhere in this firmware), so it -- like 'EASA' --
+ * resolves to the EU/EASA baseline. UK CAA and Italy's ENAC both
+ * directly implement the EASA regulation for Remote ID broadcast
+ * content, so their requirements really are identical to EASA's, not
+ * a display bug. FAA genuinely differs on the two items marked below. */
+function reqForRegion(item,region){
+  if(region==='FAA')return item.faa;
+  if(region==='CAA')return item.caa;
+  if(region==='ENAC')return item.enac;
+  return item.easa; /* 'auto' and 'EASA' */
+}
+function updateCompliance(){
+  var region=$('compliance-region').value;
+  var c=collectForm(lastConfig||{});
+  var s=lastStatus||{};
+  var items=[
+    {label:'UAS ID set & correctly formatted',ok:!!(c.uas_id&&c.uas_id.trim()&&validateIdFormat(c.id_type,c.uas_id.trim()).ok),faa:true,easa:true,caa:true,enac:true},
+    {label:'UA Type != None',ok:c.ua_type!==0,faa:true,easa:true,caa:true,enac:true},
+    {label:'ID Type valid for region',
+      /* FAA Part 89 accepts a physical Serial Number (ANSI/CTA-2063-A)
+       * OR a Session ID. EASA/UK CAA/ENAC's frameworks are built around
+       * a CTA-2063-A serial number or a national/CAA operator
+       * registration number -- there's no Session ID concept there. */
+      ok:region==='FAA'?(c.id_type===1||c.id_type===4):(c.id_type===1||c.id_type===2),
+      faa:true,easa:true,caa:true,enac:true},
+    {label:'Operator ID set',ok:!!(c.operator_id&&c.operator_id.trim()),faa:false,easa:true,caa:true,enac:true},
+    {label:'At least 1 TX channel enabled',ok:(c.tx_modes&31)!==0,faa:true,easa:true,caa:true,enac:true},
+    {label:'Flight Controller connected',ok:!!(s.protocol&&s.protocol>0),faa:false,easa:false,caa:false,enac:false},
+    {label:'GPS fix acquired',ok:!!(s.gps_valid&&s.fix_type>=2),faa:true,easa:true,caa:true,enac:true},
+    {label:'Lock Level configured securely',ok:c.lock_level>=1,faa:false,easa:false,caa:false,enac:false},
+    {label:'Broadcast active (sending packets)',ok:(s.tx_total||0)>0,faa:true,easa:true,caa:true,enac:true},
+  ];
+  var html='';
+  items.forEach(function(item){
+    var req=reqForRegion(item,region);
+    html+='<div class="comp-row'+(item.ok?'':' fail')+'"><span class="comp-label">'+item.label+(req?' &#x1f6a9;':'')+'</span><span>'+(item.ok?'&#x2705;':'&#x274c;')+'</span></div>';
+  });
+  /* Was previously always evaluated against the EASA required set
+   * regardless of the selected region -- fixed to match the same
+   * per-region resolution used for the 🚩 flags above. */
+  var allOk=items.every(function(item){return item.ok||!reqForRegion(item,region)});
+  html+='<div class="comp-summary">'+(allOk?'&#x2705; All required checks passed for this region.':'&#x26a0; Some required items are missing. Review the list above.')+'</div>';
+  $('compliance-list').innerHTML=html;
+}
+
+/* ---------- Sensors detail view ---------- */
+function updateSensorData(s){
+  var m=function(id,v){var e=$(id);if(e)e.textContent=(v!==undefined&&v!==null&&v!=='')?String(v):'--'};
+  m('sns-fw',s.fw_version||'—');
+  m('sns-proto',['Unknown','MAVLink','MSP','NMEA','No FC'][s.protocol]);
+  m('sns-gps',s.gps_valid&&s.fix_type>=2?(['No Fix','No Fix','2D Fix','3D Fix','3D Fix+'][s.fix_type]||'Fix '+s.fix_type):'No Fix');
+  m('sns-sats',s.satellites||0);
+  m('sns-lat',s.lat?s.lat.toFixed(6):'--');
+  m('sns-lon',s.lon?s.lon.toFixed(6):'--');
+  m('sns-alt',s.alt?s.alt.toFixed(1)+' m':'--');
+  m('sns-speed',s.speed!==undefined?s.speed.toFixed(1)+' m/s':'--');
+  m('sns-heading',s.heading!==undefined?s.heading+'°':'--');
+  m('sns-fixtype',s.fix_type!==undefined?(['No Fix','No Fix','2D','3D','3D+'][s.fix_type]||'Fix '+s.fix_type):'--');
+  if(s.home_set&&s.gps_valid&&s.fix_type>=2&&s.lat&&s.lon){
+    m('sns-home',havDist(s.home_lat,s.home_lon,s.lat,s.lon).toFixed(1)+' m');
+  }else{m('sns-home','--')}
+  m('sns-tx-total',(s.tx_total||0).toLocaleString());
+  m('sns-tx-rate',lastTxTotal>0?((s.tx_total-lastTxTotal)/2).toFixed(0)+'/s':'0/s');
+  lastTxTotal=s.tx_total||0;
+  m('sns-tx-wifi',(s.tx_wifi_bcn||0).toLocaleString());
+  m('sns-tx-nan',(s.tx_wifi_nan||0).toLocaleString());
+  m('sns-tx-ble4',(s.tx_ble4||0).toLocaleString());
+  m('sns-tx-ble5',(s.tx_ble5||0).toLocaleString());
+  m('sns-temp',s.temperature!==undefined?s.temperature.toFixed(0)+'°C':'--');
+  m('sns-uptime',s.uptime_ms!==undefined?fmtUptime(s.uptime_ms):'--');
+}
+function fmtUptime(ms){
+  var sec=Math.floor(ms/1000);
+  var h=Math.floor(sec/3600),mi=Math.floor((sec%3600)/60),se=sec%60;
+  return (h<10?'0':'')+h+':'+(mi<10?'0':'')+mi+':'+(se<10?'0':'')+se;
+}
+function havDist(lat1,lon1,lat2,lon2){
+  var R=6371000;var dLat=(lat2-lat1)*Math.PI/180;var dLon=(lon2-lon1)*Math.PI/180;
+  var a=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)*Math.sin(dLon/2);
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+var lastTxTotal=0,lastStatus=null;
+
+/* ---------- OTA firmware update (hand-rolled SHA-256: crypto.subtle is
+ * unavailable in most browsers over plain http://, which is how this
+ * device is always served) ---------- */
+function sha256Hex(buffer){
+function rotr(x,n){return (x>>>n)|(x<<(32-n))}
+var k=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
+0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
+0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,
+0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
+0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,
+0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
+0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,
+0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+var h=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+var bytes=new Uint8Array(buffer);
+var l=bytes.length;
+var withOne=l+1;
+var padLen=(withOne%64<=56)?(56-withOne%64):(56+64-withOne%64);
+var total=withOne+padLen+8;
+var msg=new Uint8Array(total);
+msg.set(bytes);
+msg[l]=0x80;
+var bitLenHi=Math.floor(l/0x20000000);
+var bitLenLo=(l*8)>>>0;
+msg[total-4]=(bitLenLo>>>24)&0xff;msg[total-3]=(bitLenLo>>>16)&0xff;
+msg[total-2]=(bitLenLo>>>8)&0xff;msg[total-1]=bitLenLo&0xff;
+msg[total-8]=(bitLenHi>>>24)&0xff;msg[total-7]=(bitLenHi>>>16)&0xff;
+msg[total-6]=(bitLenHi>>>8)&0xff;msg[total-5]=bitLenHi&0xff;
+var w=new Uint32Array(64);
+for(var chunk=0;chunk<total;chunk+=64){
+for(var i=0;i<16;i++){var o=chunk+i*4;w[i]=(msg[o]<<24)|(msg[o+1]<<16)|(msg[o+2]<<8)|msg[o+3]}
+for(var i=16;i<64;i++){
+var s0=rotr(w[i-15],7)^rotr(w[i-15],18)^(w[i-15]>>>3);
+var s1=rotr(w[i-2],17)^rotr(w[i-2],19)^(w[i-2]>>>10);
+w[i]=(w[i-16]+s0+w[i-7]+s1)|0}
+var a=h[0],b=h[1],c=h[2],d=h[3],e=h[4],f=h[5],g=h[6],hh=h[7];
+for(var i=0;i<64;i++){
+var S1=rotr(e,6)^rotr(e,11)^rotr(e,25);
+var ch=(e&f)^((~e)&g);
+var temp1=(hh+S1+ch+k[i]+w[i])|0;
+var S0=rotr(a,2)^rotr(a,13)^rotr(a,22);
+var maj=(a&b)^(a&c)^(b&c);
+var temp2=(S0+maj)|0;
+hh=g;g=f;f=e;e=(d+temp1)|0;d=c;c=b;b=a;a=(temp1+temp2)|0}
+h[0]=(h[0]+a)|0;h[1]=(h[1]+b)|0;h[2]=(h[2]+c)|0;h[3]=(h[3]+d)|0;
+h[4]=(h[4]+e)|0;h[5]=(h[5]+f)|0;h[6]=(h[6]+g)|0;h[7]=(h[7]+hh)|0}
+var out='';
+for(var i=0;i<8;i++){out+=(h[i]>>>0).toString(16).padStart(8,'0')}
+return out
+}
+
+function otaUpdate(){
+var f=$('fwfile').files[0];
+if(!f){showMsg('Select a .bin file first',1);return}
+var btn=$('ota-btn');
+var wrap=$('ota-progress-wrap'),fill=$('ota-progress-fill');
+btn.disabled=true;
+if(wrap)wrap.classList.add('active');
+if(fill){fill.classList.remove('indeterminate');fill.style.width='0%'}
+$('ota_progress').textContent='Reading file... ('+(f.size/1024).toFixed(0)+' KB)';
+var r=new FileReader();
+r.onload=function(e){
+$('ota_progress').textContent='Hashing firmware...';
+var hexHash=sha256Hex(e.target.result);
+var xhr=new XMLHttpRequest();
+xhr.open('POST','/ota',true);
+xhr.setRequestHeader('Content-Type','application/octet-stream');
+xhr.setRequestHeader('X-Expected-SHA256',hexHash);
+xhr.upload.onprogress=function(ev){
+  if(ev.lengthComputable){
+    var pct=Math.round((ev.loaded/ev.total)*100);
+    if(fill)fill.style.width=pct+'%';
+    $('ota_progress').textContent='Uploading... '+pct+'%';
+  }
+};
+xhr.upload.onload=function(){
+  if(fill)fill.classList.add('indeterminate');
+  $('ota_progress').textContent='Verifying & flashing... (do not power off)';
+};
+xhr.onload=function(){
+  if(fill){fill.classList.remove('indeterminate');fill.style.width='100%'}
+  $('ota_progress').textContent=xhr.responseText;
+  if(xhr.status>=200&&xhr.status<300){showMsg('OTA complete, rebooting...')}
+  else{showMsg('OTA failed: '+xhr.responseText,1)}
+  btn.disabled=false;
+  setTimeout(function(){if(wrap)wrap.classList.remove('active')},3000);
+};
+xhr.onerror=function(){
+  if(wrap)wrap.classList.remove('active');
+  $('ota_progress').textContent='';
+  showMsg('OTA failed: connection error',1);
+  btn.disabled=false;
+};
+xhr.send(e.target.result);
+};
+r.onerror=function(){showMsg('Failed to read file',1);btn.disabled=false};
+r.readAsArrayBuffer(f);
+}
+
+/* ---------- Security / Login (client-side panel access gate) ---------- */
+var secTimer=null;
+function toggleSecPwd(){var el=$('sec-password');el.type=el.type==='password'?'text':'password'}
+function saveSecurity(e){
+  e.preventDefault();
+  var pwd=$('sec-password').value.trim();
+  if(pwd.length>0&&pwd.length<4){showMsg('Password must be at least 4 characters',1);return}
+  localStorage.setItem('rid_sec_pwd',pwd?btoa(pwd):'');
+  localStorage.setItem('rid_sec_timeout',$('sec-timeout').value);
+  showMsg('Security settings saved',0);
+}
+function requireLogin(){
+  var pwd=localStorage.getItem('rid_sec_pwd');
+  if(!pwd){return true}
+  var entered=prompt('Enter access password:');
+  if(atob(pwd)===entered){
+    var t=parseInt(localStorage.getItem('rid_sec_timeout')||'15');
+    if(t>0){secTimer=setTimeout(function(){localStorage.removeItem('rid_sec_logged');requireLogin()},t*60000)}
+    localStorage.setItem('rid_sec_logged','1');
+    return true
+  }
+  if(entered!==null){showMsg('Incorrect password',1)}else{return true}
+  return false
+}
+
+(function(){
+  var pwd=localStorage.getItem('rid_sec_pwd');
+  if(pwd&&!localStorage.getItem('rid_sec_logged')){
+    var ok=requireLogin();
+    if(!ok){document.body.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:12px;background:#121212;color:#fff;font-family:sans-serif"><div style="font-size:3em">&#x1f510;</div><h2>Access Denied</h2><p style="color:#aaa">Reload the page to try again</p></div>';return}
+  }
+  var to=localStorage.getItem('rid_sec_timeout');if(to&&$('sec-timeout'))$('sec-timeout').value=to;
+  getCfg();
+})();
+</script>
+</body>
+</html>

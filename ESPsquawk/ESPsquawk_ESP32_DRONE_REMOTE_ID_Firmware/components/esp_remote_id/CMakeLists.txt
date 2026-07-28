@@ -1,0 +1,55 @@
+idf_component_register(
+    SRCS
+        "src/cli.c"
+		"src/ble_tx.c" 
+		"src/protocol_detect.c"
+        "src/nmea_parser.c"
+        "src/msp_parser.c"
+        "src/mavlink_parser.c"
+        "src/mav2odid.c"
+        "src/opendroneid.c"
+        "src/wifi.c"
+        "src/wifi_tx.c"
+        "src/web_config.c"
+        "src/uart_mirror.c"
+        "src/nvs_storage.c"
+        "src/led_status.c"
+        "src/esp_remote_id.c"
+        "src/rid_patrol.c"
+        "src/rid_kalman.c"
+        "src/rid_mavlink_tx.c"
+        "src/rid_auth.c"
+        "src/rid_ota.c"
+        "src/led_ws2812.c"
+        "src/rid_lighting.c"
+        "src/buzzer.c"
+        "src/rid_dronecan.c"
+        "src/rid_mavlink_usb.c"
+    INCLUDE_DIRS
+        "include"
+        "mavlink"
+    PRIV_REQUIRES driver
+    REQUIRES
+        esp_wifi
+        bt
+        nvs_flash
+        esp_event
+        esp_netif
+        esp_system
+        freertos
+        esp_http_server
+        app_update
+        esp_driver_uart
+        esp_driver_gpio
+        esp_driver_ledc
+        esp_driver_rmt
+        esp_driver_twai
+        esp_driver_usb_serial_jtag
+        esp_driver_tsens
+        mbedtls
+        efuse
+    EMBED_TXTFILES
+        "webui/config.html"
+        "webui/mobile.html"
+)
+target_compile_options(${COMPONENT_LIB} PRIVATE -Wno-address-of-packed-member)

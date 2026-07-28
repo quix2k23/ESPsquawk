@@ -1,0 +1,30 @@
+menu "ESP Remote ID Configuration"
+
+    config RID_LED_R_GPIO
+        int "RGB LED Red GPIO"
+        default 2
+        range -1 48
+        help
+            GPIO pin for the red channel of the status RGB LED.
+            Set to -1 to disable.
+
+    config RID_LED_G_GPIO
+        int "RGB LED Green GPIO"
+        default 4
+        range -1 48
+        help
+            GPIO pin for the green channel of the status RGB LED.
+            Set to -1 to disable.
+
+    config RID_LED_B_GPIO
+        int "Compliance/Armed Status LED GPIO"
+        default 6
+        range -1 48
+        help
+            GPIO pin for the "ready to fly" indicator -- lit solid once
+            identity is set, GPS has a valid fix, and the device is
+            actively transmitting Remote ID. Independent of the R/G
+            status LED above (no longer mixed in as a blue channel).
+            Set to -1 to disable.
+
+endmenu

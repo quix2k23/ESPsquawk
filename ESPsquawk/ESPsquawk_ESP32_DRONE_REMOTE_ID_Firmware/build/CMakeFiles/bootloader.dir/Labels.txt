@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+E:/Drones/ESPbuzz/ESPsquawk_ESP32_DRONE_REMOTE_ID_Firmware/build/CMakeFiles/bootloader
+E:/Drones/ESPbuzz/ESPsquawk_ESP32_DRONE_REMOTE_ID_Firmware/build/CMakeFiles/bootloader.rule
+E:/Drones/ESPbuzz/ESPsquawk_ESP32_DRONE_REMOTE_ID_Firmware/build/CMakeFiles/bootloader-complete.rule
+E:/Drones/ESPbuzz/ESPsquawk_ESP32_DRONE_REMOTE_ID_Firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+E:/Drones/ESPbuzz/ESPsquawk_ESP32_DRONE_REMOTE_ID_Firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+E:/Drones/ESPbuzz/ESPsquawk_ESP32_DRONE_REMOTE_ID_Firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+E:/Drones/ESPbuzz/ESPsquawk_ESP32_DRONE_REMOTE_ID_Firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+E:/Drones/ESPbuzz/ESPsquawk_ESP32_DRONE_REMOTE_ID_Firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+E:/Drones/ESPbuzz/ESPsquawk_ESP32_DRONE_REMOTE_ID_Firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+E:/Drones/ESPbuzz/ESPsquawk_ESP32_DRONE_REMOTE_ID_Firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
