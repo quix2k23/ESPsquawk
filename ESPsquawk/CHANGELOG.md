@@ -2,7 +2,7 @@
 
 # Changelog
 
-All notable changes to the ESPsquawk Remote ID firmware from today's development session.
+All notable changes to the ESPsquawk Remote ID firmware 
 
 ## [1.5.2]
 ### Fixed
