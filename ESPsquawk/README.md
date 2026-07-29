@@ -6,12 +6,15 @@ Link to bin file if you do not want to compile: https://github.com/quix2k23/ESPs
 
 Minimum Wiring (ESP32 + Flight Controller)
 
-Flight Controller    ESP32 (or variant)
-─────────────────    ─────────────────
-TX (UART)       →    GPIO18 (UART#2 RX) 57600 baud. firmware default autoselects NMEA, MPS or Mavlink 
+
+TX (UART)       →    GPIO11 (UART#2 RX) 57600 baud. firmware default autoselects NMEA, MPS or Mavlink 
 GND             →    GND
 5V (BEC)        →    5V / VIN
 
+Buzzer    default pin GPIO9
+Red   LED default pin GPIO2
+Green LED default pin GPIO4
+Blue  LED default pin GPIO6
 
 A comprehensive guide for setting up ESP-IDF 6.0.2+, configuring your project, and integrating GPS with UART.
 📋 Prerequisites
