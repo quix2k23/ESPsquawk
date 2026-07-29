@@ -1,6 +1,7 @@
 A simple ESP32-s3 based project that broadcasts data as per drone remoteID regulations. 
 
-Very useful as it can receive mavlink data from your flight controller's gps instead of needing a second GPS module
+It can use a NMEA compliant GPS module or Mavlink position data from your flight controller's GPS module
+
 
 The project builds on the excellent project by https://github.com/VOLTEKOVER/ESP_DRONE_REMOTEID
 
