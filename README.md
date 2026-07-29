@@ -13,7 +13,7 @@ OTA firmware update
 
 Webserver disable option / Wifi password / web interface password protected
 
-Buzzer output to alert that GPS lock achieved and home position saved for the session
+Buzzer output to alert that GPS lock was achieved and home position saved for the session
 
 LED status/buzzer pins can be re-mapped via webUI
 
