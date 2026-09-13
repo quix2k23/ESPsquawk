@@ -18,4 +18,9 @@ Buzzer output to alert that GPS lock was achieved and home position saved for th
 LED status/buzzer pins can be re-mapped via webUI
 
 
+## Also in this repo
+
+[`GoldSquawkWidget/`](./GoldSquawkWidget) - an unrelated Android home-screen
+widget that shows a live gold price from TradingView and notifies on
+bull/bear trend flips. See its own README for details.
 

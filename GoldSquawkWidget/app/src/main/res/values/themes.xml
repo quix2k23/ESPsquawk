@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.GoldSquawk" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/launcher_gold</item>
+        <item name="colorPrimaryDark">@color/launcher_background</item>
+        <item name="colorAccent">@color/launcher_gold</item>
+    </style>
+</resources>

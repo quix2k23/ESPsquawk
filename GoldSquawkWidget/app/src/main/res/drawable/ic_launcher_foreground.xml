@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Gold coin -->
+    <path
+        android:fillColor="#D4AF37"
+        android:pathData="M54,20 A34,34 0 1,1 53.9,20 Z" />
+    <!-- Upward trend mark cut into the coin -->
+    <path
+        android:fillColor="#1B1F26"
+        android:pathData="M54,38 L70,62 L59,62 L59,80 L49,80 L49,62 L38,62 Z" />
+</vector>

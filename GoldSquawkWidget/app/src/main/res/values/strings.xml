@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Gold Squawk</string>
+    <string name="widget_label">Gold Trend Widget</string>
+    <string name="widget_description">Live gold (XAU) price from TradingView with bull/bear alerts.</string>
+    <string name="widget_symbol_label">GOLD · XAU/USD</string>
+
+    <string name="placeholder_price">–</string>
+    <string name="placeholder_change">Tap to load</string>
+    <string name="placeholder_updated">Not updated yet</string>
+    <string name="updated_at_format">Updated %1$s</string>
+
+    <string name="trend_bull">Bullish</string>
+    <string name="trend_bear">Bearish</string>
+    <string name="trend_neutral">Neutral</string>
+
+    <string name="notif_channel_name">Gold trend alerts</string>
+    <string name="notif_channel_description">Pings when gold flips between bullish and bearish</string>
+    <string name="notif_bull_title">Gold turned bullish</string>
+    <string name="notif_bear_title">Gold turned bearish</string>
+    <string name="notif_body">%1$s, %2$s since last check</string>
+
+    <string name="configure_title">Configure Gold Squawk</string>
+    <string name="configure_interval_label">Refresh interval</string>
+    <string name="configure_interval_15">15 minutes</string>
+    <string name="configure_interval_30">30 minutes</string>
+    <string name="configure_interval_60">60 minutes</string>
+    <string name="configure_threshold_label">Alert sensitivity (minimum move to flag a trend)</string>
+    <string name="configure_add_button">Add widget</string>
+    <string name="threshold_percent_format">%.2f%%</string>
+</resources>

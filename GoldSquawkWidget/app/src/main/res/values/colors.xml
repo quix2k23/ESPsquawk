@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bull_green">#2E7D32</color>
+    <color name="bear_red">#C62828</color>
+    <color name="neutral_gray">#757575</color>
+
+    <!-- The widget card is intentionally always dark, ticker-style, regardless of
+         system light/dark mode, so no night-mode variants are needed here. -->
+    <color name="widget_background">#E61B1F26</color>
+    <color name="widget_price">#FFFFFFFF</color>
+    <color name="widget_label">#B3FFFFFF</color>
+
+    <color name="launcher_background">#1B1F26</color>
+    <color name="launcher_gold">#D4AF37</color>
+</resources>
